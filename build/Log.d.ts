@@ -1,0 +1,31 @@
+import { ILogger } from "./ILogger";
+import { ILogTarget } from "./ILogTarget";
+import { LogMessage } from "./LogMessage";
+export declare class Log {
+    static MARK: number;
+    static ALL: number;
+    static TRACE: number;
+    static DEBUG: number;
+    static LOG: number;
+    static INFO: number;
+    static PRINT: number;
+    static NOTICE: number;
+    static WARN: number;
+    static CRITICAL: number;
+    static ERROR: number;
+    static FATAL: number;
+    static COMMAND: number;
+    static targets: ILogTarget[];
+    static getLogger(category?: any): ILogger;
+    static log(logMessage: LogMessage): void;
+    static clear(): void;
+    static addTarget(target: ILogTarget): void;
+    static removeTarget(target: ILogTarget): void;
+    static removeAllTargets(): void;
+    static getTargetByType(type: any): ILogTarget;
+    static setLevel(level: number): void;
+    static setFilters(filters: string[]): void;
+    static formatCategory(category: string): string;
+    static resolveLevelName(level: number): string;
+    static destroy(): void;
+}
