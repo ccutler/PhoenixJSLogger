@@ -72,7 +72,7 @@ export class Logger implements ILogger {
         if (reference.constructor && reference.constructor.toString) {
             const info: string[] = reference.constructor.toString().match(/function\s*(\w+)/);
             if (info && info.length === 2) {
-                result = "[" + info[1] + "]";
+                result = info[1];
             }
         } else {
             reference = reference.toString();

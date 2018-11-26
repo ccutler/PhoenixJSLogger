@@ -47,7 +47,7 @@ export class BrowserConsoleTarget implements ILogTarget {
             let message: string = "%c";
             message += "(" + this.getTimeStamp() + ")";
             message += Log.resolveLevelName(logMessage.level) + " ";
-            message += logMessage.category + ": ";
+            message += Log.formatCategory(logMessage.category) + ": ";
 
             if (typeof logMessage.message[0] === "string" || typeof logMessage.message[0] === "number" || typeof logMessage.message[0] === "boolean") {
                 message += logMessage.message;

@@ -24,10 +24,9 @@ class NodeConsoleTarget {
             let output;
             let message = "(" + this.getTimeStamp() + ")";
             message += Log_1.Log.resolveLevelName(logMessage.level) + " ";
-            message += logMessage.category + ": ";
+            message += Log_1.Log.formatCategory(logMessage.category) + ": ";
             if (typeof logMessage.message[0] === "string" || typeof logMessage.message[0] === "number" || typeof logMessage.message[0] === "boolean") {
                 message += logMessage.message;
-                // output = [message, "color: " + this.getColor(logMessage.level)];
                 output = [this.getColor(logMessage.level) + message + "\x1b[0m"];
             }
             else {
