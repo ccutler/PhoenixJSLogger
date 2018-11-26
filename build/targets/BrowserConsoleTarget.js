@@ -1,18 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Log_1 = require("../Log");
-class BrowserConsoleTarget {
-    constructor(level = 0, filters = []) {
+var Log_1 = require("../Log");
+var BrowserConsoleTarget = /** @class */ (function () {
+    function BrowserConsoleTarget(level, filters) {
+        if (level === void 0) { level = 0; }
+        if (filters === void 0) { filters = []; }
         this.timeStampOffset = 0;
         this.startTime = new Date().getTime();
         this.level = level;
         this.filters = filters;
     }
-    output(logMessage) {
+    BrowserConsoleTarget.prototype.output = function (logMessage) {
         if (logMessage.level >= this.level) {
             if (this.filters.length > 0) {
-                let canOutput = false;
-                for (let i = 0; i < this.filters.length; i++) {
+                var canOutput = false;
+                for (var i = 0; i < this.filters.length; i++) {
                     if (this.filters[i] === logMessage.category) {
                         canOutput = true;
                     }
@@ -21,8 +23,8 @@ class BrowserConsoleTarget {
                     return;
                 }
             }
-            let output;
-            let message = "%c";
+            var output = void 0;
+            var message = "%c";
             message += "(" + this.getTimeStamp() + ")";
             message += Log_1.Log.resolveLevelName(logMessage.level) + " ";
             message += Log_1.Log.formatCategory(logMessage.category) + ": ";
@@ -66,11 +68,11 @@ class BrowserConsoleTarget {
                     break;
             }
         }
-    }
-    clear() {
+    };
+    BrowserConsoleTarget.prototype.clear = function () {
         this.timeStampOffset = this.getTimer();
-    }
-    getColor(level) {
+    };
+    BrowserConsoleTarget.prototype.getColor = function (level) {
         switch (level) {
             case Log_1.Log.TRACE:
                 return BrowserConsoleTarget.COLOR_TRACE;
@@ -97,27 +99,28 @@ class BrowserConsoleTarget {
             default:
                 return BrowserConsoleTarget.COLOR_LOG;
         }
-    }
-    getTimeStamp() {
+    };
+    BrowserConsoleTarget.prototype.getTimeStamp = function () {
         return this.getTimer() - this.timeStampOffset;
-    }
-    getTimer() {
+    };
+    BrowserConsoleTarget.prototype.getTimer = function () {
         return (new Date().getTime() - this.startTime);
-    }
-    destroy() {
+    };
+    BrowserConsoleTarget.prototype.destroy = function () {
         this.filters = null;
-    }
-}
-BrowserConsoleTarget.COLOR_TRACE = "#CCCCCC";
-BrowserConsoleTarget.COLOR_DEBUG = "#999999";
-BrowserConsoleTarget.COLOR_LOG = "#666666";
-BrowserConsoleTarget.COLOR_INFO = "#333333";
-BrowserConsoleTarget.COLOR_PRINT = "#000000";
-BrowserConsoleTarget.COLOR_NOTICE = "#0066FF";
-BrowserConsoleTarget.COLOR_WARN = "#FF6600";
-BrowserConsoleTarget.COLOR_CRITICAL = "#FF0000";
-BrowserConsoleTarget.COLOR_ERROR = "#FF0000";
-BrowserConsoleTarget.COLOR_FATAL = "#FF0000";
-BrowserConsoleTarget.COLOR_COMMAND = "#6666FF";
+    };
+    BrowserConsoleTarget.COLOR_TRACE = "#CCCCCC";
+    BrowserConsoleTarget.COLOR_DEBUG = "#999999";
+    BrowserConsoleTarget.COLOR_LOG = "#666666";
+    BrowserConsoleTarget.COLOR_INFO = "#333333";
+    BrowserConsoleTarget.COLOR_PRINT = "#000000";
+    BrowserConsoleTarget.COLOR_NOTICE = "#0066FF";
+    BrowserConsoleTarget.COLOR_WARN = "#FF6600";
+    BrowserConsoleTarget.COLOR_CRITICAL = "#FF0000";
+    BrowserConsoleTarget.COLOR_ERROR = "#FF0000";
+    BrowserConsoleTarget.COLOR_FATAL = "#FF0000";
+    BrowserConsoleTarget.COLOR_COMMAND = "#6666FF";
+    return BrowserConsoleTarget;
+}());
 exports.BrowserConsoleTarget = BrowserConsoleTarget;
 //# sourceMappingURL=BrowserConsoleTarget.js.map

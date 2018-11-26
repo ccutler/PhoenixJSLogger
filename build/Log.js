@@ -1,44 +1,46 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Logger_1 = require("./Logger");
-class Log {
-    static getLogger(category) {
-        return new Logger_1.Logger(category);
+var Logger_1 = require("./Logger");
+var Log = /** @class */ (function () {
+    function Log() {
     }
-    static log(logMessage) {
-        for (let i = 0; i < Log.targets.length; i++) {
+    Log.getLogger = function (category) {
+        return new Logger_1.Logger(category);
+    };
+    Log.log = function (logMessage) {
+        for (var i = 0; i < Log.targets.length; i++) {
             Log.targets[i].output(logMessage);
         }
-    }
-    static clear() {
-        for (let i = 0; i < Log.targets.length; i++) {
+    };
+    Log.clear = function () {
+        for (var i = 0; i < Log.targets.length; i++) {
             Log.targets[i].clear();
         }
-    }
-    static addTarget(target) {
+    };
+    Log.addTarget = function (target) {
         if (Log.targets.indexOf(target) === -1) {
             Log.targets.push(target);
         }
-    }
-    static removeTarget(target) {
-        let logTarget;
-        for (let i = 0; i < Log.targets.length; i++) {
+    };
+    Log.removeTarget = function (target) {
+        var logTarget;
+        for (var i = 0; i < Log.targets.length; i++) {
             logTarget = Log.targets.splice(Log.targets.indexOf(target), 1)[0];
             logTarget.destroy();
         }
-    }
-    static removeAllTargets() {
-        let target;
-        for (let i = 0; i < Log.targets.length; i++) {
+    };
+    Log.removeAllTargets = function () {
+        var target;
+        for (var i = 0; i < Log.targets.length; i++) {
             target = Log.targets[i];
             target.destroy();
         }
         Log.targets = [];
-    }
-    static getTargetByType(type) {
-        let target;
-        let targetType;
-        for (const key in Log.targets) {
+    };
+    Log.getTargetByType = function (type) {
+        var target;
+        var targetType;
+        for (var key in Log.targets) {
             if (Log.targets.hasOwnProperty(key)) {
                 targetType = Log.targets[key];
                 if (targetType instanceof type) {
@@ -47,21 +49,21 @@ class Log {
             }
         }
         return target;
-    }
-    static setLevel(level) {
-        for (let i = 0; i < Log.targets.length; i++) {
+    };
+    Log.setLevel = function (level) {
+        for (var i = 0; i < Log.targets.length; i++) {
             Log.targets[i].level = level;
         }
-    }
-    static setFilters(filters) {
-        for (let i = 0; i < Log.targets.length; i++) {
+    };
+    Log.setFilters = function (filters) {
+        for (var i = 0; i < Log.targets.length; i++) {
             Log.targets[i].filters = filters;
         }
-    }
-    static formatCategory(category) {
+    };
+    Log.formatCategory = function (category) {
         return (category) ? "[" + category + "]: " : "";
-    }
-    static resolveLevelName(level) {
+    };
+    Log.resolveLevelName = function (level) {
         switch (level) {
             default:
             case Log.ALL:
@@ -89,28 +91,29 @@ class Log {
             case Log.COMMAND:
                 return "|   CMD| ";
         }
-    }
-    static destroy() {
-        for (let i = 0; i < Log.targets.length; i++) {
+    };
+    Log.destroy = function () {
+        for (var i = 0; i < Log.targets.length; i++) {
             Log.targets[i].destroy();
             Log.targets[i] = null;
         }
         Log.targets = null;
-    }
-}
-Log.MARK = -1;
-Log.ALL = 0;
-Log.TRACE = 1;
-Log.DEBUG = 2;
-Log.LOG = 3;
-Log.INFO = 4;
-Log.PRINT = 5;
-Log.NOTICE = 6;
-Log.WARN = 7;
-Log.CRITICAL = 8;
-Log.ERROR = 9;
-Log.FATAL = 10;
-Log.COMMAND = 100;
-Log.targets = [];
+    };
+    Log.MARK = -1;
+    Log.ALL = 0;
+    Log.TRACE = 1;
+    Log.DEBUG = 2;
+    Log.LOG = 3;
+    Log.INFO = 4;
+    Log.PRINT = 5;
+    Log.NOTICE = 6;
+    Log.WARN = 7;
+    Log.CRITICAL = 8;
+    Log.ERROR = 9;
+    Log.FATAL = 10;
+    Log.COMMAND = 100;
+    Log.targets = [];
+    return Log;
+}());
 exports.Log = Log;
 //# sourceMappingURL=Log.js.map

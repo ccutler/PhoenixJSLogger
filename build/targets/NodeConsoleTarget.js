@@ -1,18 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Log_1 = require("../Log");
-class NodeConsoleTarget {
-    constructor(level = 0, filters = []) {
+var Log_1 = require("../Log");
+var NodeConsoleTarget = /** @class */ (function () {
+    function NodeConsoleTarget(level, filters) {
+        if (level === void 0) { level = 0; }
+        if (filters === void 0) { filters = []; }
         this.timeStampOffset = 0;
         this.startTime = new Date().getTime();
         this.level = level;
         this.filters = filters;
     }
-    output(logMessage) {
+    NodeConsoleTarget.prototype.output = function (logMessage) {
         if (logMessage.level >= this.level) {
             if (this.filters.length > 0) {
-                let canOutput = false;
-                for (let i = 0; i < this.filters.length; i++) {
+                var canOutput = false;
+                for (var i = 0; i < this.filters.length; i++) {
                     if (this.filters[i] === logMessage.category) {
                         canOutput = true;
                     }
@@ -21,8 +23,8 @@ class NodeConsoleTarget {
                     return;
                 }
             }
-            let output;
-            let message = "(" + this.getTimeStamp() + ")";
+            var output = void 0;
+            var message = "(" + this.getTimeStamp() + ")";
             message += Log_1.Log.resolveLevelName(logMessage.level) + " ";
             message += Log_1.Log.formatCategory(logMessage.category) + ": ";
             if (typeof logMessage.message[0] === "string" || typeof logMessage.message[0] === "number" || typeof logMessage.message[0] === "boolean") {
@@ -53,8 +55,8 @@ class NodeConsoleTarget {
                     break;
             }
         }
-    }
-    getColor(level) {
+    };
+    NodeConsoleTarget.prototype.getColor = function (level) {
         switch (level) {
             case Log_1.Log.TRACE:
                 return NodeConsoleTarget.COLOR_TRACE;
@@ -81,30 +83,31 @@ class NodeConsoleTarget {
             default:
                 return NodeConsoleTarget.COLOR_LOG;
         }
-    }
-    clear() {
+    };
+    NodeConsoleTarget.prototype.clear = function () {
         this.timeStampOffset = this.getTimer();
-    }
-    getTimeStamp() {
+    };
+    NodeConsoleTarget.prototype.getTimeStamp = function () {
         return this.getTimer() - this.timeStampOffset;
-    }
-    getTimer() {
+    };
+    NodeConsoleTarget.prototype.getTimer = function () {
         return (new Date().getTime() - this.startTime);
-    }
-    destroy() {
+    };
+    NodeConsoleTarget.prototype.destroy = function () {
         this.filters = null;
-    }
-}
-NodeConsoleTarget.COLOR_TRACE = "\x1b[1m\x1b[30m";
-NodeConsoleTarget.COLOR_DEBUG = "\x1b[2m\x1b[37m";
-NodeConsoleTarget.COLOR_LOG = "\x1b[2m\x1b[37m";
-NodeConsoleTarget.COLOR_INFO = "\x1b[1m\x1b[37m";
-NodeConsoleTarget.COLOR_PRINT = "\x1b[37m";
-NodeConsoleTarget.COLOR_NOTICE = "\x1b[1m\x1b[34m";
-NodeConsoleTarget.COLOR_WARN = "\x1b[1m\x1b[33m";
-NodeConsoleTarget.COLOR_CRITICAL = "\x1b[1m\x1b[31m";
-NodeConsoleTarget.COLOR_ERROR = "\x1b[31m";
-NodeConsoleTarget.COLOR_FATAL = "\x1b[41m";
-NodeConsoleTarget.COLOR_COMMAND = "\x1b[1m\x1b[36m";
+    };
+    NodeConsoleTarget.COLOR_TRACE = "\x1b[1m\x1b[30m";
+    NodeConsoleTarget.COLOR_DEBUG = "\x1b[2m\x1b[37m";
+    NodeConsoleTarget.COLOR_LOG = "\x1b[2m\x1b[37m";
+    NodeConsoleTarget.COLOR_INFO = "\x1b[1m\x1b[37m";
+    NodeConsoleTarget.COLOR_PRINT = "\x1b[37m";
+    NodeConsoleTarget.COLOR_NOTICE = "\x1b[1m\x1b[34m";
+    NodeConsoleTarget.COLOR_WARN = "\x1b[1m\x1b[33m";
+    NodeConsoleTarget.COLOR_CRITICAL = "\x1b[1m\x1b[31m";
+    NodeConsoleTarget.COLOR_ERROR = "\x1b[31m";
+    NodeConsoleTarget.COLOR_FATAL = "\x1b[41m";
+    NodeConsoleTarget.COLOR_COMMAND = "\x1b[1m\x1b[36m";
+    return NodeConsoleTarget;
+}());
 exports.NodeConsoleTarget = NodeConsoleTarget;
 //# sourceMappingURL=NodeConsoleTarget.js.map
