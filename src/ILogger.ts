@@ -11,6 +11,7 @@ export interface ILogger {
     error(...args: any[]): void;
     critical(...args: any[]): void;
     fatal(...args: any[]): void;
+    assert(...args: any[]): void;
     mark(...args: any[]): void;
     command(...args: any[]): void;
 }

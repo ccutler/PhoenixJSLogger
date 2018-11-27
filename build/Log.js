@@ -85,9 +85,11 @@ var Log = /** @class */ (function () {
             case Log.ERROR:
                 return "| ERROR| ";
             case Log.CRITICAL:
-                return "|CRITICAL| ";
+                return "|  CRIT| ";
             case Log.FATAL:
                 return "| FATAL| ";
+            case Log.ASSERT:
+                return "|ASSERT| ";
             case Log.COMMAND:
                 return "|   CMD| ";
         }
@@ -111,6 +113,7 @@ var Log = /** @class */ (function () {
     Log.CRITICAL = 8;
     Log.ERROR = 9;
     Log.FATAL = 10;
+    Log.ASSERT = 11;
     Log.COMMAND = 100;
     Log.targets = [];
     return Log;

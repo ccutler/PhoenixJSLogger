@@ -11,6 +11,7 @@ export declare class BrowserConsoleTarget implements ILogTarget {
     private static COLOR_CRITICAL;
     private static COLOR_ERROR;
     private static COLOR_FATAL;
+    private static COLOR_ASSERT;
     private static COLOR_COMMAND;
     filters: string[];
     level: number;

@@ -16,6 +16,7 @@ export class Log {
     public static CRITICAL: number = 8;
     public static ERROR: number = 9;
     public static FATAL: number = 10;
+    public static ASSERT: number = 11;
     public static COMMAND: number = 100;
 
     public static targets: ILogTarget[] = [];
@@ -113,9 +114,11 @@ export class Log {
             case Log.ERROR:
                 return "| ERROR| ";
             case Log.CRITICAL:
-                return "|CRITICAL| ";
+                return "|  CRIT| ";
             case Log.FATAL:
                 return "| FATAL| ";
+            case Log.ASSERT:
+                return "|ASSERT| ";
             case Log.COMMAND:
                 return "|   CMD| ";
         }

@@ -53,6 +53,12 @@ var NodeConsoleTarget = /** @class */ (function () {
                 case Log_1.Log.FATAL:
                     console.error.apply(console, output);
                     break;
+                case Log_1.Log.ASSERT:
+                    console.warn.apply(console, output);
+                    break;
+                case Log_1.Log.MARK:
+                    console.timeStamp.apply(console, output);
+                    break;
             }
         }
     };
@@ -78,6 +84,8 @@ var NodeConsoleTarget = /** @class */ (function () {
                 return NodeConsoleTarget.COLOR_CRITICAL;
             case Log_1.Log.FATAL:
                 return NodeConsoleTarget.COLOR_FATAL;
+            case Log_1.Log.ASSERT:
+                return NodeConsoleTarget.COLOR_ASSERT;
             case Log_1.Log.COMMAND:
                 return NodeConsoleTarget.COLOR_COMMAND;
             default:
@@ -106,6 +114,7 @@ var NodeConsoleTarget = /** @class */ (function () {
     NodeConsoleTarget.COLOR_CRITICAL = "\x1b[1m\x1b[31m";
     NodeConsoleTarget.COLOR_ERROR = "\x1b[31m";
     NodeConsoleTarget.COLOR_FATAL = "\x1b[41m";
+    NodeConsoleTarget.COLOR_ASSERT = "\x1b[1m\x1b[33m";
     NodeConsoleTarget.COLOR_COMMAND = "\x1b[1m\x1b[36m";
     return NodeConsoleTarget;
 }());

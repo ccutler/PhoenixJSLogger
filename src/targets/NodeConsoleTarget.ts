@@ -13,6 +13,7 @@ export class NodeConsoleTarget implements ILogTarget {
     private static COLOR_CRITICAL: string = "\x1b[1m\x1b[31m";
     private static COLOR_ERROR: string = "\x1b[31m";
     private static COLOR_FATAL: string = "\x1b[41m";
+    private static COLOR_ASSERT: string = "\x1b[1m\x1b[33m";
     private static COLOR_COMMAND: string = "\x1b[1m\x1b[36m";
 
     public filters: string[];
@@ -77,6 +78,14 @@ export class NodeConsoleTarget implements ILogTarget {
                 case Log.FATAL:
                     console.error.apply(console, output);
                     break;
+
+                case Log.ASSERT:
+                    console.warn.apply(console, output);
+                    break;
+
+                case Log.MARK:
+                    console.timeStamp.apply(console, output);
+                    break;
             }
         }
     }
@@ -112,6 +121,9 @@ export class NodeConsoleTarget implements ILogTarget {
 
             case Log.FATAL:
                 return NodeConsoleTarget.COLOR_FATAL;
+
+            case Log.ASSERT:
+                return NodeConsoleTarget.COLOR_ASSERT;
 
             case Log.COMMAND:
                 return NodeConsoleTarget.COLOR_COMMAND;

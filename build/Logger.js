@@ -99,7 +99,7 @@ var Logger = /** @class */ (function () {
             args[_i - 1] = arguments[_i];
         }
         if (!condition) {
-            Log_1.Log.log(new LogMessage_1.LogMessage(Log_1.Log.WARN, this.category, args));
+            Log_1.Log.log(new LogMessage_1.LogMessage(Log_1.Log.ASSERT, this.category, args));
         }
     };
     Logger.prototype.getName = function (reference) {

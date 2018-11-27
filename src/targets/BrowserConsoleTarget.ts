@@ -13,6 +13,7 @@ export class BrowserConsoleTarget implements ILogTarget {
     private static COLOR_CRITICAL: string = "#FF0000";
     private static COLOR_ERROR: string = "#FF0000";
     private static COLOR_FATAL: string = "#FF0000";
+    private static COLOR_ASSERT: string = "#FF6600";
     private static COLOR_COMMAND: string = "#6666FF";
 
     public filters: string[];
@@ -90,6 +91,19 @@ export class BrowserConsoleTarget implements ILogTarget {
                     }
                     console.error.apply(console, output);
                     break;
+                case Log.ASSERT:
+                    if (output.length === 1) {
+                        console.warn.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
+                    }
+                    console.warn.apply(console, output);
+                    break;
+
+                case Log.MARK:
+                    if (output.length === 1) {
+                        console.timeStamp.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
+                    }
+                    console.timeStamp.apply(console, output);
+                    break;
             }
         }
     }
@@ -132,6 +146,9 @@ export class BrowserConsoleTarget implements ILogTarget {
 
             case Log.COMMAND:
                 return BrowserConsoleTarget.COLOR_COMMAND;
+
+            case Log.ASSERT:
+                return BrowserConsoleTarget.COLOR_ASSERT;
 
             default:
                 return BrowserConsoleTarget.COLOR_LOG;

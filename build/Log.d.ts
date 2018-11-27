@@ -14,6 +14,7 @@ export declare class Log {
     static CRITICAL: number;
     static ERROR: number;
     static FATAL: number;
+    static ASSERT: number;
     static COMMAND: number;
     static targets: ILogTarget[];
     static getLogger(category?: any): ILogger;

@@ -66,6 +66,18 @@ var BrowserConsoleTarget = /** @class */ (function () {
                     }
                     console.error.apply(console, output);
                     break;
+                case Log_1.Log.ASSERT:
+                    if (output.length === 1) {
+                        console.warn.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
+                    }
+                    console.warn.apply(console, output);
+                    break;
+                case Log_1.Log.MARK:
+                    if (output.length === 1) {
+                        console.timeStamp.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
+                    }
+                    console.timeStamp.apply(console, output);
+                    break;
             }
         }
     };
@@ -96,6 +108,8 @@ var BrowserConsoleTarget = /** @class */ (function () {
                 return BrowserConsoleTarget.COLOR_FATAL;
             case Log_1.Log.COMMAND:
                 return BrowserConsoleTarget.COLOR_COMMAND;
+            case Log_1.Log.ASSERT:
+                return BrowserConsoleTarget.COLOR_ASSERT;
             default:
                 return BrowserConsoleTarget.COLOR_LOG;
         }
@@ -119,6 +133,7 @@ var BrowserConsoleTarget = /** @class */ (function () {
     BrowserConsoleTarget.COLOR_CRITICAL = "#FF0000";
     BrowserConsoleTarget.COLOR_ERROR = "#FF0000";
     BrowserConsoleTarget.COLOR_FATAL = "#FF0000";
+    BrowserConsoleTarget.COLOR_ASSERT = "#FF6600";
     BrowserConsoleTarget.COLOR_COMMAND = "#6666FF";
     return BrowserConsoleTarget;
 }());

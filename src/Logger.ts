@@ -63,7 +63,7 @@ export class Logger implements ILogger {
 
     public assert(condition: boolean, ...args: any[]): void {
         if (!condition) {
-            Log.log(new LogMessage(Log.WARN, this.category, args));
+            Log.log(new LogMessage(Log.ASSERT, this.category, args));
         }
     }
 
