@@ -9,4 +9,9 @@ export class LogMessage {
         this.category = category;
         this.message = message;
     }
+
+    public destroy(): void {
+        this.category = null;
+        this.message = null;
+    }
 }

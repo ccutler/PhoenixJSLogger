@@ -8,6 +8,7 @@ var Log = /** @class */ (function () {
     Log.log = function (logMessage) {
         for (var i = 0; i < Log.targets.length; i++) {
             Log.targets[i].output(logMessage);
+            logMessage.destroy();
         }
     };
     Log.clear = function () {

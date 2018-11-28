@@ -4,6 +4,10 @@ var LogMessage = /** @class */ (function () {
         this.category = category;
         this.message = message;
     }
+    LogMessage.prototype.destroy = function () {
+        this.category = null;
+        this.message = null;
+    };
     return LogMessage;
 }());
 export { LogMessage };

@@ -3,4 +3,5 @@ export declare class LogMessage {
     category: any;
     message: any;
     constructor(level: number, category: any, message: any);
+    destroy(): void;
 }

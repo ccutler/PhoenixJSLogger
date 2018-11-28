@@ -28,6 +28,7 @@ export class Log {
     public static log(logMessage: LogMessage): void {
         for (let i = 0; i < Log.targets.length; i++) {
             Log.targets[i].output(logMessage);
+            logMessage.destroy();
         }
     }
 
