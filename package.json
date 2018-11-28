@@ -2,6 +2,7 @@
   "name": "@phoenixjs/logger",
   "version": "1.0.0",
   "description": "PhoenixJSLogger",
+  "sideEffects": false,
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {

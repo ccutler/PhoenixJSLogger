@@ -54,7 +54,7 @@ export class BrowserConsoleTarget implements ILogTarget {
                 message += logMessage.message;
                 output = [message, "color: " + this.getColor(logMessage.level)];
             } else {
-                output = [logMessage.message[0]];
+                output = [message, "color: " + this.getColor(logMessage.level), logMessage.message[0]];
             }
 
             switch (logMessage.level) {
@@ -63,45 +63,27 @@ export class BrowserConsoleTarget implements ILogTarget {
                 case Log.DEBUG:
                 case Log.LOG:
                 case Log.PRINT:
-                    if (output.length === 1) {
-                        console.log.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
                     console.log.apply(console, output);
                     break;
 
                 case Log.INFO:
-                    if (output.length === 1) {
-                        console.info.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
                     console.info.apply(console, output);
                     break;
 
                 case Log.WARN:
-                    if (output.length === 1) {
-                        console.warn.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
                     console.warn.apply(console, output);
                     break;
 
                 case Log.ERROR:
                 case Log.CRITICAL:
                 case Log.FATAL:
-                    if (output.length === 1) {
-                        console.error.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
                     console.error.apply(console, output);
                     break;
                 case Log.ASSERT:
-                    if (output.length === 1) {
-                        console.warn.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
                     console.warn.apply(console, output);
                     break;
 
                 case Log.MARK:
-                    if (output.length === 1) {
-                        console.timeStamp.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
                     console.timeStamp.apply(console, output);
                     break;
             }

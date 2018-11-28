@@ -19,9 +19,9 @@ export declare class NodeConsoleTarget implements ILogTarget {
     private timeStampOffset;
     constructor(level?: number, filters?: string[]);
     output(logMessage: LogMessage): void;
-    private getColor(level);
+    private getColor;
     clear(): void;
-    private getTimeStamp();
-    private getTimer();
+    private getTimeStamp;
+    private getTimer;
     destroy(): void;
 }

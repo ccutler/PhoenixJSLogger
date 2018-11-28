@@ -1,11 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Logger_1 = require("./Logger");
+import { Logger } from "./Logger";
 var Log = /** @class */ (function () {
     function Log() {
     }
     Log.getLogger = function (category) {
-        return new Logger_1.Logger(category);
+        return new Logger(category);
     };
     Log.log = function (logMessage) {
         for (var i = 0; i < Log.targets.length; i++) {
@@ -61,7 +59,7 @@ var Log = /** @class */ (function () {
         }
     };
     Log.formatCategory = function (category) {
-        return (category) ? "[" + category + "]: " : "";
+        return (category) ? "[" + category + "]" : "";
     };
     Log.resolveLevelName = function (level) {
         switch (level) {
@@ -118,5 +116,5 @@ var Log = /** @class */ (function () {
     Log.targets = [];
     return Log;
 }());
-exports.Log = Log;
+export { Log };
 //# sourceMappingURL=Log.js.map

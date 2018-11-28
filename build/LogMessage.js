@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var LogMessage = /** @class */ (function () {
     function LogMessage(level, category, message) {
         this.level = level;
@@ -8,5 +6,5 @@ var LogMessage = /** @class */ (function () {
     }
     return LogMessage;
 }());
-exports.LogMessage = LogMessage;
+export { LogMessage };
 //# sourceMappingURL=LogMessage.js.map

@@ -20,8 +20,8 @@ export declare class BrowserConsoleTarget implements ILogTarget {
     constructor(level?: number, filters?: string[]);
     output(logMessage: LogMessage): void;
     clear(): void;
-    private getColor(level);
-    private getTimeStamp();
-    private getTimer();
+    private getColor;
+    private getTimeStamp;
+    private getTimer;
     destroy(): void;
 }

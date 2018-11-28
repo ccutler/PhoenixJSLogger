@@ -16,5 +16,5 @@ export declare class Logger implements ILogger {
     mark(...args: any[]): void;
     command(...args: any[]): void;
     assert(condition: boolean, ...args: any[]): void;
-    private getName(reference);
+    private getName;
 }

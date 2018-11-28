@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Log_1 = require("../Log");
+import { Log } from "../Log";
 var BrowserConsoleTarget = /** @class */ (function () {
     function BrowserConsoleTarget(level, filters) {
         if (level === void 0) { level = 0; }
@@ -26,56 +24,38 @@ var BrowserConsoleTarget = /** @class */ (function () {
             var output = void 0;
             var message = "%c";
             message += "(" + this.getTimeStamp() + ")";
-            message += Log_1.Log.resolveLevelName(logMessage.level) + " ";
-            message += Log_1.Log.formatCategory(logMessage.category) + ": ";
+            message += Log.resolveLevelName(logMessage.level) + " ";
+            message += Log.formatCategory(logMessage.category) + ": ";
             if (typeof logMessage.message[0] === "string" || typeof logMessage.message[0] === "number" || typeof logMessage.message[0] === "boolean") {
                 message += logMessage.message;
                 output = [message, "color: " + this.getColor(logMessage.level)];
             }
             else {
-                output = [logMessage.message[0]];
+                output = [message, "color: " + this.getColor(logMessage.level), logMessage.message[0]];
             }
             switch (logMessage.level) {
                 default:
-                case Log_1.Log.TRACE:
-                case Log_1.Log.DEBUG:
-                case Log_1.Log.LOG:
-                case Log_1.Log.PRINT:
-                    if (output.length === 1) {
-                        console.log.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
+                case Log.TRACE:
+                case Log.DEBUG:
+                case Log.LOG:
+                case Log.PRINT:
                     console.log.apply(console, output);
                     break;
-                case Log_1.Log.INFO:
-                    if (output.length === 1) {
-                        console.info.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
+                case Log.INFO:
                     console.info.apply(console, output);
                     break;
-                case Log_1.Log.WARN:
-                    if (output.length === 1) {
-                        console.warn.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
+                case Log.WARN:
                     console.warn.apply(console, output);
                     break;
-                case Log_1.Log.ERROR:
-                case Log_1.Log.CRITICAL:
-                case Log_1.Log.FATAL:
-                    if (output.length === 1) {
-                        console.error.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
+                case Log.ERROR:
+                case Log.CRITICAL:
+                case Log.FATAL:
                     console.error.apply(console, output);
                     break;
-                case Log_1.Log.ASSERT:
-                    if (output.length === 1) {
-                        console.warn.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
+                case Log.ASSERT:
                     console.warn.apply(console, output);
                     break;
-                case Log_1.Log.MARK:
-                    if (output.length === 1) {
-                        console.timeStamp.apply(console, [message, "color: " + this.getColor(logMessage.level)]);
-                    }
+                case Log.MARK:
                     console.timeStamp.apply(console, output);
                     break;
             }
@@ -86,29 +66,29 @@ var BrowserConsoleTarget = /** @class */ (function () {
     };
     BrowserConsoleTarget.prototype.getColor = function (level) {
         switch (level) {
-            case Log_1.Log.TRACE:
+            case Log.TRACE:
                 return BrowserConsoleTarget.COLOR_TRACE;
-            case Log_1.Log.DEBUG:
+            case Log.DEBUG:
                 return BrowserConsoleTarget.COLOR_DEBUG;
-            case Log_1.Log.LOG:
+            case Log.LOG:
                 return BrowserConsoleTarget.COLOR_LOG;
-            case Log_1.Log.PRINT:
+            case Log.PRINT:
                 return BrowserConsoleTarget.COLOR_PRINT;
-            case Log_1.Log.INFO:
+            case Log.INFO:
                 return BrowserConsoleTarget.COLOR_INFO;
-            case Log_1.Log.NOTICE:
+            case Log.NOTICE:
                 return BrowserConsoleTarget.COLOR_NOTICE;
-            case Log_1.Log.WARN:
+            case Log.WARN:
                 return BrowserConsoleTarget.COLOR_WARN;
-            case Log_1.Log.ERROR:
+            case Log.ERROR:
                 return BrowserConsoleTarget.COLOR_ERROR;
-            case Log_1.Log.CRITICAL:
+            case Log.CRITICAL:
                 return BrowserConsoleTarget.COLOR_CRITICAL;
-            case Log_1.Log.FATAL:
+            case Log.FATAL:
                 return BrowserConsoleTarget.COLOR_FATAL;
-            case Log_1.Log.COMMAND:
+            case Log.COMMAND:
                 return BrowserConsoleTarget.COLOR_COMMAND;
-            case Log_1.Log.ASSERT:
+            case Log.ASSERT:
                 return BrowserConsoleTarget.COLOR_ASSERT;
             default:
                 return BrowserConsoleTarget.COLOR_LOG;
@@ -137,5 +117,5 @@ var BrowserConsoleTarget = /** @class */ (function () {
     BrowserConsoleTarget.COLOR_COMMAND = "#6666FF";
     return BrowserConsoleTarget;
 }());
-exports.BrowserConsoleTarget = BrowserConsoleTarget;
+export { BrowserConsoleTarget };
 //# sourceMappingURL=BrowserConsoleTarget.js.map

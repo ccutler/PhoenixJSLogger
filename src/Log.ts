@@ -89,7 +89,7 @@ export class Log {
     }
 
     public static formatCategory(category: string): string {
-        return (category) ? "[" + category + "]: " : "";
+        return (category) ? "[" + category + "]" : "";
     }
 
     public static resolveLevelName(level: number): string {

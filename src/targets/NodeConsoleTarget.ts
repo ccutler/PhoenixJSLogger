@@ -53,7 +53,7 @@ export class NodeConsoleTarget implements ILogTarget {
                 message += logMessage.message;
                 output = [this.getColor(logMessage.level) + message + "\x1b[0m"];
             } else {
-                output = [logMessage.message[0]];
+                output = [this.getColor(logMessage.level) + message + JSON.stringify(logMessage.message[0]) + "\x1b[0m"];
             }
 
             switch (logMessage.level) {

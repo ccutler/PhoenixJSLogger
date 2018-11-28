@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Log_1 = require("../Log");
+import { Log } from "../Log";
 var NodeConsoleTarget = /** @class */ (function () {
     function NodeConsoleTarget(level, filters) {
         if (level === void 0) { level = 0; }
@@ -25,38 +23,38 @@ var NodeConsoleTarget = /** @class */ (function () {
             }
             var output = void 0;
             var message = "(" + this.getTimeStamp() + ")";
-            message += Log_1.Log.resolveLevelName(logMessage.level) + " ";
-            message += Log_1.Log.formatCategory(logMessage.category) + ": ";
+            message += Log.resolveLevelName(logMessage.level) + " ";
+            message += Log.formatCategory(logMessage.category) + ": ";
             if (typeof logMessage.message[0] === "string" || typeof logMessage.message[0] === "number" || typeof logMessage.message[0] === "boolean") {
                 message += logMessage.message;
                 output = [this.getColor(logMessage.level) + message + "\x1b[0m"];
             }
             else {
-                output = [logMessage.message[0]];
+                output = [this.getColor(logMessage.level) + message + JSON.stringify(logMessage.message[0]) + "\x1b[0m"];
             }
             switch (logMessage.level) {
                 default:
-                case Log_1.Log.TRACE:
-                case Log_1.Log.DEBUG:
-                case Log_1.Log.LOG:
-                case Log_1.Log.PRINT:
+                case Log.TRACE:
+                case Log.DEBUG:
+                case Log.LOG:
+                case Log.PRINT:
                     console.log.apply(console, output);
                     break;
-                case Log_1.Log.INFO:
+                case Log.INFO:
                     console.info.apply(console, output);
                     break;
-                case Log_1.Log.WARN:
+                case Log.WARN:
                     console.warn.apply(console, output);
                     break;
-                case Log_1.Log.ERROR:
-                case Log_1.Log.CRITICAL:
-                case Log_1.Log.FATAL:
+                case Log.ERROR:
+                case Log.CRITICAL:
+                case Log.FATAL:
                     console.error.apply(console, output);
                     break;
-                case Log_1.Log.ASSERT:
+                case Log.ASSERT:
                     console.warn.apply(console, output);
                     break;
-                case Log_1.Log.MARK:
+                case Log.MARK:
                     console.timeStamp.apply(console, output);
                     break;
             }
@@ -64,29 +62,29 @@ var NodeConsoleTarget = /** @class */ (function () {
     };
     NodeConsoleTarget.prototype.getColor = function (level) {
         switch (level) {
-            case Log_1.Log.TRACE:
+            case Log.TRACE:
                 return NodeConsoleTarget.COLOR_TRACE;
-            case Log_1.Log.DEBUG:
+            case Log.DEBUG:
                 return NodeConsoleTarget.COLOR_DEBUG;
-            case Log_1.Log.LOG:
+            case Log.LOG:
                 return NodeConsoleTarget.COLOR_LOG;
-            case Log_1.Log.PRINT:
+            case Log.PRINT:
                 return NodeConsoleTarget.COLOR_PRINT;
-            case Log_1.Log.INFO:
+            case Log.INFO:
                 return NodeConsoleTarget.COLOR_INFO;
-            case Log_1.Log.NOTICE:
+            case Log.NOTICE:
                 return NodeConsoleTarget.COLOR_NOTICE;
-            case Log_1.Log.WARN:
+            case Log.WARN:
                 return NodeConsoleTarget.COLOR_WARN;
-            case Log_1.Log.ERROR:
+            case Log.ERROR:
                 return NodeConsoleTarget.COLOR_ERROR;
-            case Log_1.Log.CRITICAL:
+            case Log.CRITICAL:
                 return NodeConsoleTarget.COLOR_CRITICAL;
-            case Log_1.Log.FATAL:
+            case Log.FATAL:
                 return NodeConsoleTarget.COLOR_FATAL;
-            case Log_1.Log.ASSERT:
+            case Log.ASSERT:
                 return NodeConsoleTarget.COLOR_ASSERT;
-            case Log_1.Log.COMMAND:
+            case Log.COMMAND:
                 return NodeConsoleTarget.COLOR_COMMAND;
             default:
                 return NodeConsoleTarget.COLOR_LOG;
@@ -118,5 +116,5 @@ var NodeConsoleTarget = /** @class */ (function () {
     NodeConsoleTarget.COLOR_COMMAND = "\x1b[1m\x1b[36m";
     return NodeConsoleTarget;
 }());
-exports.NodeConsoleTarget = NodeConsoleTarget;
+export { NodeConsoleTarget };
 //# sourceMappingURL=NodeConsoleTarget.js.map
