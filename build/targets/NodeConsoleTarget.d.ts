@@ -1,6 +1,7 @@
+import { ConsoleTarget } from "./ConsoleTarget";
 import { ILogTarget } from "../ILogTarget";
 import { LogMessage } from "../LogMessage";
-export declare class NodeConsoleTarget implements ILogTarget {
+export declare class NodeConsoleTarget extends ConsoleTarget implements ILogTarget {
     private static COLOR_TRACE;
     private static COLOR_DEBUG;
     private static COLOR_LOG;
@@ -13,15 +14,7 @@ export declare class NodeConsoleTarget implements ILogTarget {
     private static COLOR_FATAL;
     private static COLOR_ASSERT;
     private static COLOR_COMMAND;
-    filters: string[];
-    level: number;
-    private startTime;
-    private timeStampOffset;
-    constructor(level?: number, filters?: string[]);
+    private static COLOR_RESET;
     output(logMessage: LogMessage): void;
     private getColor;
-    clear(): void;
-    private getTimeStamp;
-    private getTimer;
-    destroy(): void;
 }

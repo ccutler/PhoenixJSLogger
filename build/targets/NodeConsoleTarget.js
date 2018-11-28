@@ -1,64 +1,37 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import { ConsoleTarget } from "./ConsoleTarget";
 import { Log } from "../Log";
-var NodeConsoleTarget = /** @class */ (function () {
-    function NodeConsoleTarget(level, filters) {
-        if (level === void 0) { level = 0; }
-        if (filters === void 0) { filters = []; }
-        this.timeStampOffset = 0;
-        this.startTime = new Date().getTime();
-        this.level = level;
-        this.filters = filters;
+var NodeConsoleTarget = /** @class */ (function (_super) {
+    __extends(NodeConsoleTarget, _super);
+    function NodeConsoleTarget() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     NodeConsoleTarget.prototype.output = function (logMessage) {
-        if (logMessage.level >= this.level) {
-            if (this.filters.length > 0) {
-                var canOutput = false;
-                for (var i = 0; i < this.filters.length; i++) {
-                    if (this.filters[i] === logMessage.category) {
-                        canOutput = true;
-                    }
-                }
-                if (!canOutput) {
-                    return;
-                }
-            }
-            var output = void 0;
-            var message = "(" + this.getTimeStamp() + ")";
-            message += Log.resolveLevelName(logMessage.level) + " ";
-            message += Log.formatCategory(logMessage.category) + ": ";
-            if (typeof logMessage.message[0] === "string" || typeof logMessage.message[0] === "number" || typeof logMessage.message[0] === "boolean") {
-                message += logMessage.message;
-                output = [this.getColor(logMessage.level) + message + "\x1b[0m"];
-            }
-            else {
-                output = [this.getColor(logMessage.level) + message + JSON.stringify(logMessage.message[0]) + "\x1b[0m"];
-            }
-            switch (logMessage.level) {
-                default:
-                case Log.TRACE:
-                case Log.DEBUG:
-                case Log.LOG:
-                case Log.PRINT:
-                    console.log.apply(console, output);
-                    break;
-                case Log.INFO:
-                    console.info.apply(console, output);
-                    break;
-                case Log.WARN:
-                    console.warn.apply(console, output);
-                    break;
-                case Log.ERROR:
-                case Log.CRITICAL:
-                case Log.FATAL:
-                    console.error.apply(console, output);
-                    break;
-                case Log.ASSERT:
-                    console.warn.apply(console, output);
-                    break;
-                case Log.MARK:
-                    console.timeStamp.apply(console, output);
-                    break;
-            }
+        if (!this.canOutput(logMessage)) {
+            return;
         }
+        var output;
+        var message = "(" + this.getTimeStamp() + ")" + (Log.resolveLevelName(logMessage.level) + Log.formatCategory(logMessage.category)) + ": ";
+        if (typeof logMessage.message[0] === "string" || typeof logMessage.message[0] === "number" || typeof logMessage.message[0] === "boolean") {
+            message += logMessage.message;
+            output = [this.getColor(logMessage.level) + message + NodeConsoleTarget.COLOR_RESET];
+        }
+        else {
+            output = [this.getColor(logMessage.level) + message + JSON.stringify(logMessage.message[0], null, 2) + NodeConsoleTarget.COLOR_RESET];
+        }
+        this.write(logMessage.level, output);
     };
     NodeConsoleTarget.prototype.getColor = function (level) {
         switch (level) {
@@ -90,18 +63,6 @@ var NodeConsoleTarget = /** @class */ (function () {
                 return NodeConsoleTarget.COLOR_LOG;
         }
     };
-    NodeConsoleTarget.prototype.clear = function () {
-        this.timeStampOffset = this.getTimer();
-    };
-    NodeConsoleTarget.prototype.getTimeStamp = function () {
-        return this.getTimer() - this.timeStampOffset;
-    };
-    NodeConsoleTarget.prototype.getTimer = function () {
-        return (new Date().getTime() - this.startTime);
-    };
-    NodeConsoleTarget.prototype.destroy = function () {
-        this.filters = null;
-    };
     NodeConsoleTarget.COLOR_TRACE = "\x1b[1m\x1b[30m";
     NodeConsoleTarget.COLOR_DEBUG = "\x1b[2m\x1b[37m";
     NodeConsoleTarget.COLOR_LOG = "\x1b[2m\x1b[37m";
@@ -114,7 +75,8 @@ var NodeConsoleTarget = /** @class */ (function () {
     NodeConsoleTarget.COLOR_FATAL = "\x1b[41m";
     NodeConsoleTarget.COLOR_ASSERT = "\x1b[1m\x1b[33m";
     NodeConsoleTarget.COLOR_COMMAND = "\x1b[1m\x1b[36m";
+    NodeConsoleTarget.COLOR_RESET = "\x1b[0m";
     return NodeConsoleTarget;
-}());
+}(ConsoleTarget));
 export { NodeConsoleTarget };
 //# sourceMappingURL=NodeConsoleTarget.js.map
