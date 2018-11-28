@@ -102,7 +102,7 @@ var Logger = /** @class */ (function () {
     };
     Logger.prototype.getName = function (reference) {
         var result = "";
-        if (reference.constructor && reference.constructor.toString) {
+        if (typeof reference !== "string" && reference.constructor && reference.constructor.toString) {
             var info = reference.constructor.toString().match(/function\s*(\w+)/);
             if (info && info.length === 2) {
                 result = info[1];

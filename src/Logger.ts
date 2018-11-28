@@ -69,7 +69,7 @@ export class Logger implements ILogger {
 
     private getName(reference: any): string {
         let result: string = "";
-        if (reference.constructor && reference.constructor.toString) {
+        if (typeof reference !== "string" && reference.constructor && reference.constructor.toString) {
             const info: string[] = reference.constructor.toString().match(/function\s*(\w+)/);
             if (info && info.length === 2) {
                 result = info[1];
