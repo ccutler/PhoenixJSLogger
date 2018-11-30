@@ -1,5 +1,5 @@
-import { ILogger, Log, LogMessage } from "../../";
-import { ConsoleTarget } from "../../targets/";
+import { ILogger, Log, LogMessage } from "../../src/";
+import { ConsoleTarget } from "../../src/targets/";
 
 const NAME: string = "ConsoleTargetTest";
 const MESSAGE: string = "ConsoleTarget";

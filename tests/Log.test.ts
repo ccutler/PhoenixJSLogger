@@ -1,5 +1,5 @@
-import { ILogTarget, Logger, Log, LogMessage } from "../";
-import { ConsoleTarget, NodeConsoleTarget, BrowserConsoleTarget } from "../targets/";
+import { ILogTarget, Logger, Log, LogMessage } from "../src/";
+import { ConsoleTarget, NodeConsoleTarget, BrowserConsoleTarget } from "../src/targets/";
 
 const NAME: string = "LogTest";
 

@@ -1,4 +1,4 @@
-import { ILogger, Log, LogMessage } from "../";
+import { ILogger, Log, LogMessage } from "../src/";
 
 const NAME: string = "LoggerTest";
 

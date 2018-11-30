@@ -1,4 +1,4 @@
-import { Log, LogMessage } from "../";
+import { Log, LogMessage } from "../src/";
 
 const NAME: string = "LogMessageTest";
 const MESSAGE: string = "LogMessage";

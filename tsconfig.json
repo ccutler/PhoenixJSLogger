@@ -56,8 +56,7 @@
   },
   "exclude": [
     "build",
-    "coverage",
     "node_modules",
-    "src/__tests__"
+    "tests"
   ]
 }
