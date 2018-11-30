@@ -63,9 +63,8 @@ export class Log {
 
     public static getTargetByType(type: any): ILogTarget {
         let target: ILogTarget;
-        let targetType: ILogTarget;
         for (const key in Log.targets) {
-            targetType = Log.targets[key];
+            const targetType = Log.targets[key];
             if (targetType instanceof type) {
                 target = targetType;
             }
