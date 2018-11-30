@@ -1,14 +1,12 @@
-import { ILogTarget } from "../ILogTarget";
-import { Log } from "../Log";
-import { LogMessage } from "../LogMessage";
+import { ILogTarget, Log, LogMessage } from "../";
 
 export class ConsoleTarget implements ILogTarget {
 
     public filters: string[];
     public level: number;
 
-    protected startTime: number;
-    protected timeStampOffset: number = 0;
+    public startTime: number;
+    public timeStampOffset: number = 0;
 
     constructor(level: number = 0, filters: string[] = []) {
         this.startTime = new Date().getTime();
@@ -27,13 +25,13 @@ export class ConsoleTarget implements ILogTarget {
             message += logMessage.message;
             output = [message];
         } else {
-            output = [message, logMessage.message[0]];
+            output = [message, JSON.stringify(logMessage.message[0], null, 2)];
         }
 
         this.write(logMessage.level, output);
     }
 
-    protected canOutput(logMessage: LogMessage): boolean {
+    public canOutput(logMessage: LogMessage): boolean {
         if (logMessage.level < this.level) {
             return false;
         }
@@ -51,6 +49,7 @@ export class ConsoleTarget implements ILogTarget {
         return true;
     }
 
+    /* istanbul ignore next */
     protected write(level: number, output: any): void {
         switch (level) {
             default:

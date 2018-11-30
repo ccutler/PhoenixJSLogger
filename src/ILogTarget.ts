@@ -1,4 +1,4 @@
-import { LogMessage } from "./LogMessage";
+import { LogMessage } from "./";
 
 export interface ILogTarget {
     filters: string[];

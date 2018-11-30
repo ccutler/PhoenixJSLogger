@@ -1,7 +1,5 @@
+import { ILogTarget, Log, LogMessage } from "../";
 import { ConsoleTarget } from "./ConsoleTarget";
-import { ILogTarget } from "../ILogTarget";
-import { Log } from "../Log";
-import { LogMessage } from "../LogMessage";
 
 export class NodeConsoleTarget extends ConsoleTarget implements ILogTarget {
     private static COLOR_TRACE: string = "\x1b[1m\x1b[30m";
@@ -34,6 +32,7 @@ export class NodeConsoleTarget extends ConsoleTarget implements ILogTarget {
         this.write(logMessage.level, output);
     }
 
+    /* istanbul ignore next */
     private getColor(level: number): string {
         switch (level) {
             case Log.TRACE:

@@ -1,7 +1,4 @@
-import { ILogger } from "./ILogger";
-import { ILogTarget } from "./ILogTarget";
-import { Logger } from "./Logger";
-import { LogMessage } from "./LogMessage";
+import { ILogger, ILogTarget, Logger, LogMessage } from "./";
 
 export class Log {
     public static MARK: number = -1;
@@ -22,14 +19,16 @@ export class Log {
     public static targets: ILogTarget[] = [];
 
     public static getLogger(category?: any): ILogger {
+        if (!Log.targets) { Log.targets = []; }
         return new Logger(category);
     }
 
-    public static log(logMessage: LogMessage): void {
+    public static log(logMessage: LogMessage): LogMessage {
         for (let i = 0; i < Log.targets.length; i++) {
             Log.targets[i].output(logMessage);
-            logMessage.destroy();
         }
+
+        return logMessage;
     }
 
     public static clear(): void {
@@ -66,11 +65,9 @@ export class Log {
         let target: ILogTarget;
         let targetType: ILogTarget;
         for (const key in Log.targets) {
-            if (Log.targets.hasOwnProperty(key)) {
-                targetType = Log.targets[key];
-                if (targetType instanceof type) {
-                    target = targetType;
-                }
+            targetType = Log.targets[key];
+            if (targetType instanceof type) {
+                target = targetType;
             }
         }
 
@@ -90,7 +87,7 @@ export class Log {
     }
 
     public static formatCategory(category: string): string {
-        return (category) ? "[" + category + "]" : "";
+        return `[${category}]`;
     }
 
     public static resolveLevelName(level: number): string {
@@ -118,10 +115,10 @@ export class Log {
                 return "|  CRIT| ";
             case Log.FATAL:
                 return "| FATAL| ";
-            case Log.ASSERT:
-                return "|ASSERT| ";
             case Log.COMMAND:
                 return "|   CMD| ";
+            case Log.ASSERT:
+                return "|ASSERT| ";
         }
     }
 
