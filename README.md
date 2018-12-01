@@ -12,8 +12,8 @@ Useable in both Node & the Browser (using webpack), with the ability to add addi
 3) Get logger (using 'this' as category)  
 4) Log away!  
 ```typescript
-import { ILogger, Log, BrowserConsoleTarget } from "@phoenixjs/logger";
-Log.addTarget(new BrowserConsoleTarget());
+import { ILogger, Log, ConsoleTarget } from "@phoenixjs/logger";
+Log.addTarget(new ConsoleTarget());
 
 const log: Ilogger = Log.getLogger(this);
 log.debug("Debug Statement");
