@@ -69,8 +69,8 @@
 				<p>Lightweight, extensible javascript logger that has risen from the ashes.<br>Useable in both Node &amp; the Browser (using webpack), with the ability to add additional custom LogTargets.</p>
 				<h2 id="basic-usage">Basic Usage</h2>
 				<p>1) Import the ILogger &amp; Log packages, plus appropriate targets.<br>2) Add targets to Log.<br>3) Get logger (using &#39;this&#39; as category)<br>4) Log away!  </p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ILogger, Log, BrowserConsoleTarget } <span class="hljs-keyword">from</span> <span class="hljs-string">"@phoenixjs/logger"</span>;
-Log.addTarget(<span class="hljs-keyword">new</span> BrowserConsoleTarget());
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ILogger, Log, ConsoleTarget } <span class="hljs-keyword">from</span> <span class="hljs-string">"@phoenixjs/logger"</span>;
+Log.addTarget(<span class="hljs-keyword">new</span> ConsoleTarget());
 
 <span class="hljs-keyword">const</span> log: Ilogger = Log.getLogger(<span class="hljs-keyword">this</span>);
 log.debug(<span class="hljs-string">"Debug Statement"</span>);
