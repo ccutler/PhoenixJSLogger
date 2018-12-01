@@ -14,7 +14,7 @@
     "url": "git+https://github.com/ccutler/PhoenixJSLogger.git"
   },
   "author": "Chris Cutler <chriscutler@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ccutler/PhoenixJSLogger/issues"
   },
