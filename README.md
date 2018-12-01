@@ -1,5 +1,7 @@
 # PhoenixJSLogger
+[![GitHub license](https://img.shields.io/github/license/ccutler/PhoenixJSLogger.svg)](https://github.com/ccutler/PhoenixJSLogger)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ccutler/PhoenixJSLogger.svg)](https://github.com/ccutler/PhoenixJSLogger)
+[![GitHub top language](https://img.shields.io/github/languages/top/ccutler/PhoenixJSLogger.svg)](https://github.com/ccutler/PhoenixJSLogger)
 
 Lightweight, extensible javascript logger that has risen from the ashes.  
 Useable in both Node & the Browser (with color output), with the ability to add additional custom LogTargets.
