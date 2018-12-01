@@ -1,7 +1,7 @@
 import { Log, LogMessage } from "../src/";
 
 const NAME: string = "LogMessageTest";
-const MESSAGE: string = "LogMessage";
+const MESSAGE: string = "LogMessageMessage";
 
 describe("LogMessage Tests", () => {
     const logMessage: LogMessage = new LogMessage(Log.ALL, NAME, MESSAGE);

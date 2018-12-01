@@ -2,7 +2,7 @@ import { ILogger, Log, LogMessage } from "../../src/";
 import { BrowserConsoleTarget } from "../../src/targets/";
 
 const NAME: string = "BrowserConsoleTargetTest";
-const MESSAGE: string = "BrowserConsoleTarget";
+const MESSAGE: string = "BrowserConsoleTargetMessage";
 
 describe("BrowserConsoleTarget Tests", () => {
     const logger: ILogger = Log.getLogger(NAME);

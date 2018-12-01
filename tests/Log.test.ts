@@ -2,6 +2,7 @@ import { ILogTarget, Logger, Log, LogMessage } from "../src/";
 import { ConsoleTarget, NodeConsoleTarget, BrowserConsoleTarget } from "../src/targets/";
 
 const NAME: string = "LogTest";
+const MESSAGE: string = "LogTestMessage";
 
 describe("Log Tests", () => {
     afterEach(() => {
@@ -25,7 +26,7 @@ describe("Log Tests", () => {
     test("Log.log returns LogMessage", () => {
         const target: ILogTarget = new MockTarget();
         Log.addTarget(target);
-        expect(Log.log(new LogMessage(Log.ALL, "LogTest", "Log"))).toBeInstanceOf(LogMessage);
+        expect(Log.log(new LogMessage(Log.ALL, NAME, MESSAGE))).toBeInstanceOf(LogMessage);
     });
 
     test("Log.clear clears logs", () => {

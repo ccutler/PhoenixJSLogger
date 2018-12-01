@@ -4,7 +4,7 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/ccutler/PhoenixJSLogger.svg)](https://github.com/ccutler/PhoenixJSLogger)
 
 Lightweight, extensible javascript logger that has risen from the ashes.  
-Useable in both Node & the Browser (with color output), with the ability to add additional custom LogTargets.
+Useable in both Node & the Browser (using webpack), with the ability to add additional custom LogTargets.
 
 ## Basic Usage
 1) Import the ILogger & Log packages, plus appropriate targets.  

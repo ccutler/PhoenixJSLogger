@@ -44,17 +44,15 @@ export class Log {
     }
 
     public static removeTarget(target: ILogTarget): void {
-        let logTarget: ILogTarget;
         for (let i = 0; i < Log.targets.length; i++) {
-            logTarget = Log.targets.splice(Log.targets.indexOf(target), 1)[0];
+            const logTarget: ILogTarget = Log.targets.splice(Log.targets.indexOf(target), 1)[0];
             logTarget.destroy();
         }
     }
 
     public static removeAllTargets(): void {
-        let target: ILogTarget;
         for (let i: number = 0; i < Log.targets.length; i++) {
-            target = Log.targets[i];
+            const target: ILogTarget = Log.targets[i];
             target.destroy();
         }
 

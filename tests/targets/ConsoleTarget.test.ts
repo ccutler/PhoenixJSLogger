@@ -2,7 +2,7 @@ import { ILogger, Log, LogMessage } from "../../src/";
 import { ConsoleTarget } from "../../src/targets/";
 
 const NAME: string = "ConsoleTargetTest";
-const MESSAGE: string = "ConsoleTarget";
+const MESSAGE: string = "ConsoleTargetMessage";
 
 describe("ConsoleTarget Tests", () => {
     const logger: ILogger = Log.getLogger(NAME);

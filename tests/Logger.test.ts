@@ -6,7 +6,7 @@ describe("Logger Tests", () => {
     const logger: ILogger = Log.getLogger(NAME);
 
     test(`Logger.category equals '${NAME}'`, () => {
-        expect(logger.category).toBe("LoggerTest");
+        expect(logger.category).toBe(NAME);
     });
 
     test("Logger.level equals 'TRACE'", () => {
