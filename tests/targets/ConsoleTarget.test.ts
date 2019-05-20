@@ -23,13 +23,13 @@ describe("ConsoleTarget Tests", () => {
 
     test("ConsoleTarget.canOutput should be true for LogLevel", () => {
         const target: ConsoleTarget = new ConsoleTarget(Log.LOG);
-        const logMessage: LogMessage = new LogMessage(Log.NOTICE, [NAME], MESSAGE);
+        const logMessage: LogMessage = new LogMessage(Log.NOTICE, NAME, MESSAGE);
         expect(target.canOutput(logMessage)).toBeTruthy();
     });
 
     test("ConsoleTarget.canOutput should be false for LogLevel", () => {
         const target: ConsoleTarget = new ConsoleTarget(Log.NOTICE);
-        const logMessage: LogMessage = new LogMessage(Log.LOG, [NAME], MESSAGE);
+        const logMessage: LogMessage = new LogMessage(Log.LOG, NAME, MESSAGE);
         expect(target.canOutput(logMessage)).toBeFalsy();
     });
 
@@ -63,10 +63,10 @@ describe("ConsoleTarget Tests", () => {
 
     test("ConsoleTarget.output should not output", () => {
         const target: ConsoleTarget = new ConsoleTarget(Log.LOG);
-        const mock = jest.spyOn(target, "output");
+        const mock = jest.spyOn(target as any, "write");
         Log.addTarget(target);
         logger.debug(MESSAGE);
-        expect(mock).toHaveBeenCalled();
+        expect(mock).not.toHaveBeenCalled();
     });
 
     test("ConsoleTarget.clear should clear", () => {

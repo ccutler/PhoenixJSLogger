@@ -23,13 +23,13 @@ describe("BrowserConsoleTarget Tests", () => {
 
     test("BrowserConsoleTarget.canOutput should be true for LogLevel", () => {
         const target: BrowserConsoleTarget = new BrowserConsoleTarget(Log.LOG);
-        const logMessage: LogMessage = new LogMessage(Log.NOTICE, [NAME], MESSAGE);
+        const logMessage: LogMessage = new LogMessage(Log.NOTICE, NAME, MESSAGE);
         expect(target.canOutput(logMessage)).toBeTruthy();
     });
 
     test("BrowserConsoleTarget.canOutput should be false for LogLevel", () => {
         const target: BrowserConsoleTarget = new BrowserConsoleTarget(Log.NOTICE);
-        const logMessage: LogMessage = new LogMessage(Log.LOG, [NAME], MESSAGE);
+        const logMessage: LogMessage = new LogMessage(Log.LOG, NAME, MESSAGE);
         expect(target.canOutput(logMessage)).toBeFalsy();
     });
 

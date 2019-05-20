@@ -2,19 +2,19 @@ import { ILogTarget, Log, LogMessage } from "../";
 import { ConsoleTarget } from "./ConsoleTarget";
 
 export class NodeConsoleTarget extends ConsoleTarget implements ILogTarget {
-    private static COLOR_TRACE: string = "\x1b[1m\x1b[30m";
-    private static COLOR_DEBUG: string = "\x1b[2m\x1b[37m";
-    private static COLOR_LOG: string = "\x1b[2m\x1b[37m";
-    private static COLOR_INFO: string = "\x1b[1m\x1b[37m";
-    private static COLOR_PRINT: string = "\x1b[37m";
-    private static COLOR_NOTICE: string = "\x1b[1m\x1b[34m";
-    private static COLOR_WARN: string = "\x1b[1m\x1b[33m";
-    private static COLOR_CRITICAL: string = "\x1b[1m\x1b[31m";
-    private static COLOR_ERROR: string = "\x1b[31m";
-    private static COLOR_FATAL: string = "\x1b[41m";
-    private static COLOR_ASSERT: string = "\x1b[1m\x1b[33m";
-    private static COLOR_COMMAND: string = "\x1b[1m\x1b[36m";
-    private static COLOR_RESET: string = "\x1b[0m";
+    private static readonly COLOR_TRACE: string = "\x1b[1m\x1b[30m";
+    private static readonly COLOR_DEBUG: string = "\x1b[2m\x1b[37m";
+    private static readonly COLOR_LOG: string = "\x1b[2m\x1b[37m";
+    private static readonly COLOR_INFO: string = "\x1b[1m\x1b[37m";
+    private static readonly COLOR_PRINT: string = "\x1b[37m";
+    private static readonly COLOR_NOTICE: string = "\x1b[1m\x1b[34m";
+    private static readonly COLOR_WARN: string = "\x1b[1m\x1b[33m";
+    private static readonly COLOR_CRITICAL: string = "\x1b[1m\x1b[31m";
+    private static readonly COLOR_ERROR: string = "\x1b[31m";
+    private static readonly COLOR_FATAL: string = "\x1b[41m";
+    private static readonly COLOR_ASSERT: string = "\x1b[1m\x1b[33m";
+    private static readonly COLOR_COMMAND: string = "\x1b[1m\x1b[36m";
+    private static readonly COLOR_RESET: string = "\x1b[0m";
 
     public output(logMessage: LogMessage): void {
         if (!this.canOutput(logMessage)) { return; }

@@ -2,18 +2,18 @@ import { ILogTarget, Log, LogMessage } from "../";
 import { ConsoleTarget } from "./ConsoleTarget";
 
 export class BrowserConsoleTarget extends ConsoleTarget implements ILogTarget {
-    private static COLOR_TRACE: string = "#CCCCCC";
-    private static COLOR_DEBUG: string = "#999999";
-    private static COLOR_LOG: string = "#666666";
-    private static COLOR_INFO: string = "#333333";
-    private static COLOR_PRINT: string = "#000000";
-    private static COLOR_NOTICE: string = "#0066FF";
-    private static COLOR_WARN: string = "#FF6600";
-    private static COLOR_CRITICAL: string = "#FF0000";
-    private static COLOR_ERROR: string = "#FF0000";
-    private static COLOR_FATAL: string = "#FF0000";
-    private static COLOR_ASSERT: string = "#FF6600";
-    private static COLOR_COMMAND: string = "#6666FF";
+    private static readonly COLOR_TRACE: string = "#CCCCCC";
+    private static readonly COLOR_DEBUG: string = "#999999";
+    private static readonly COLOR_LOG: string = "#666666";
+    private static readonly COLOR_INFO: string = "#333333";
+    private static readonly COLOR_PRINT: string = "#000000";
+    private static readonly COLOR_NOTICE: string = "#0066FF";
+    private static readonly COLOR_WARN: string = "#FF6600";
+    private static readonly COLOR_CRITICAL: string = "#FF0000";
+    private static readonly COLOR_ERROR: string = "#FF0000";
+    private static readonly COLOR_FATAL: string = "#FF0000";
+    private static readonly COLOR_ASSERT: string = "#FF6600";
+    private static readonly COLOR_COMMAND: string = "#6666FF";
 
     public output(logMessage: LogMessage): void {
         if (!this.canOutput(logMessage)) { return; }

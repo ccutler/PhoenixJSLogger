@@ -1,5 +1,6 @@
 import { ILogTarget, Log, LogMessage } from "../";
 
+/* tslint:disable:no-console */
 export class ConsoleTarget implements ILogTarget {
 
     public filters: string[];
@@ -18,7 +19,7 @@ export class ConsoleTarget implements ILogTarget {
     public output(logMessage: LogMessage): void {
         if (!this.canOutput(logMessage)) { return; }
 
-        let output: any[];
+        let output: string[];
         let message: string = `(${this.getTimeStamp()})${Log.resolveLevelName(logMessage.level) + Log.formatCategory(logMessage.category)}: `;
 
         if (typeof logMessage.message[0] === "string" || typeof logMessage.message[0] === "number" || typeof logMessage.message[0] === "boolean") {
@@ -37,7 +38,7 @@ export class ConsoleTarget implements ILogTarget {
         }
 
         if (this.filters.length > 0) {
-            for (let i = 0; i < this.filters.length; i++) {
+            for (let i: number = 0; i < this.filters.length; i++) {
                 if (this.filters[i] === logMessage.category) {
                     return true;
                 }
