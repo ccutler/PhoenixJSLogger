@@ -1,19 +1,50 @@
 import { ILogTarget, Log, LogLevel, LogMessage } from "../";
 import { ConsoleTarget } from "./ConsoleTarget";
 
+enum LogColorLight {
+    COLOR_TRACE = "#CCCCCC",
+    COLOR_DEBUG = "#999999",
+    COLOR_LOG = "#666666",
+    COLOR_INFO = "#333333",
+    COLOR_PRINT = "#000000",
+    COLOR_NOTICE = "#0066FF",
+    COLOR_WARN = "#FF6600",
+    COLOR_CRITICAL = "#FF0000",
+    COLOR_ERROR = "#FF0000",
+    COLOR_FATAL = "#FF0000",
+    COLOR_ASSERT = "#FF6600",
+    COLOR_COMMAND = "#6666FF",
+}
+
+enum LogColorDark {
+    COLOR_TRACE = "#666666",
+    COLOR_DEBUG = "#999999",
+    COLOR_LOG = "#CCCCCC",
+    COLOR_INFO = "#EDEDED",
+    COLOR_PRINT = "#FFFFFF",
+    COLOR_NOTICE = "#0066FF",
+    COLOR_WARN = "#FF6600",
+    COLOR_CRITICAL = "#FF0000",
+    COLOR_ERROR = "#FF0000",
+    COLOR_FATAL = "#FF0000",
+    COLOR_ASSERT = "#FF6600",
+    COLOR_COMMAND = "#6666FF",
+}
+
 export class BrowserConsoleTarget extends ConsoleTarget implements ILogTarget {
-    private static readonly COLOR_TRACE: string = "#CCCCCC";
-    private static readonly COLOR_DEBUG: string = "#999999";
-    private static readonly COLOR_LOG: string = "#666666";
-    private static readonly COLOR_INFO: string = "#333333";
-    private static readonly COLOR_PRINT: string = "#000000";
-    private static readonly COLOR_NOTICE: string = "#0066FF";
-    private static readonly COLOR_WARN: string = "#FF6600";
-    private static readonly COLOR_CRITICAL: string = "#FF0000";
-    private static readonly COLOR_ERROR: string = "#FF0000";
-    private static readonly COLOR_FATAL: string = "#FF0000";
-    private static readonly COLOR_ASSERT: string = "#FF6600";
-    private static readonly COLOR_COMMAND: string = "#6666FF";
+
+    private static THEME: any;
+    public constructor(theme: "light" | "dark" = "dark", level: number = 0, filters: string[] = []) {
+        super(level, filters);
+
+        if (theme === "light") {
+            BrowserConsoleTarget.THEME = LogColorLight;
+        }
+
+        if (theme === "dark") {
+            BrowserConsoleTarget.THEME = LogColorDark;
+        }
+    }
 
     public output(logMessage: LogMessage): void {
         if (!this.canOutput(logMessage)) { return; }
@@ -35,43 +66,43 @@ export class BrowserConsoleTarget extends ConsoleTarget implements ILogTarget {
     private getColor(level: number): string {
         switch (level) {
             case LogLevel.TRACE:
-                return BrowserConsoleTarget.COLOR_TRACE;
+                return BrowserConsoleTarget.THEME.COLOR_TRACE;
 
             case LogLevel.DEBUG:
-                return BrowserConsoleTarget.COLOR_DEBUG;
+                return BrowserConsoleTarget.THEME.COLOR_DEBUG;
 
             case LogLevel.LOG:
-                return BrowserConsoleTarget.COLOR_LOG;
+                return BrowserConsoleTarget.THEME.COLOR_LOG;
 
             case LogLevel.PRINT:
-                return BrowserConsoleTarget.COLOR_PRINT;
+                return BrowserConsoleTarget.THEME.COLOR_PRINT;
 
             case LogLevel.INFO:
-                return BrowserConsoleTarget.COLOR_INFO;
+                return BrowserConsoleTarget.THEME.COLOR_INFO;
 
             case LogLevel.NOTICE:
-                return BrowserConsoleTarget.COLOR_NOTICE;
+                return BrowserConsoleTarget.THEME.COLOR_NOTICE;
 
             case LogLevel.WARN:
-                return BrowserConsoleTarget.COLOR_WARN;
+                return BrowserConsoleTarget.THEME.COLOR_WARN;
 
             case LogLevel.ERROR:
-                return BrowserConsoleTarget.COLOR_ERROR;
+                return BrowserConsoleTarget.THEME.COLOR_ERROR;
 
             case LogLevel.CRITICAL:
-                return BrowserConsoleTarget.COLOR_CRITICAL;
+                return BrowserConsoleTarget.THEME.COLOR_CRITICAL;
 
             case LogLevel.FATAL:
-                return BrowserConsoleTarget.COLOR_FATAL;
+                return BrowserConsoleTarget.THEME.COLOR_FATAL;
 
             case LogLevel.COMMAND:
-                return BrowserConsoleTarget.COLOR_COMMAND;
+                return BrowserConsoleTarget.THEME.COLOR_COMMAND;
 
             case LogLevel.ASSERT:
-                return BrowserConsoleTarget.COLOR_ASSERT;
+                return BrowserConsoleTarget.THEME.COLOR_ASSERT;
 
             default:
-                return BrowserConsoleTarget.COLOR_LOG;
+                return BrowserConsoleTarget.THEME.COLOR_LOG;
         }
     }
 }
