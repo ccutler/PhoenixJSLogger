@@ -15,10 +15,50 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var __1 = require("../");
 var ConsoleTarget_1 = require("./ConsoleTarget");
+var LogColorLight;
+(function (LogColorLight) {
+    LogColorLight["COLOR_TRACE"] = "#CCCCCC";
+    LogColorLight["COLOR_DEBUG"] = "#999999";
+    LogColorLight["COLOR_LOG"] = "#666666";
+    LogColorLight["COLOR_INFO"] = "#333333";
+    LogColorLight["COLOR_PRINT"] = "#000000";
+    LogColorLight["COLOR_NOTICE"] = "#0066FF";
+    LogColorLight["COLOR_WARN"] = "#FF6600";
+    LogColorLight["COLOR_CRITICAL"] = "#FF0000";
+    LogColorLight["COLOR_ERROR"] = "#FF0000";
+    LogColorLight["COLOR_FATAL"] = "#FF0000";
+    LogColorLight["COLOR_ASSERT"] = "#FF6600";
+    LogColorLight["COLOR_COMMAND"] = "#6666FF";
+})(LogColorLight || (LogColorLight = {}));
+var LogColorDark;
+(function (LogColorDark) {
+    LogColorDark["COLOR_TRACE"] = "#666666";
+    LogColorDark["COLOR_DEBUG"] = "#999999";
+    LogColorDark["COLOR_LOG"] = "#CCCCCC";
+    LogColorDark["COLOR_INFO"] = "#EDEDED";
+    LogColorDark["COLOR_PRINT"] = "#FFFFFF";
+    LogColorDark["COLOR_NOTICE"] = "#0066FF";
+    LogColorDark["COLOR_WARN"] = "#FF6600";
+    LogColorDark["COLOR_CRITICAL"] = "#FF0000";
+    LogColorDark["COLOR_ERROR"] = "#FF0000";
+    LogColorDark["COLOR_FATAL"] = "#FF0000";
+    LogColorDark["COLOR_ASSERT"] = "#FF6600";
+    LogColorDark["COLOR_COMMAND"] = "#6666FF";
+})(LogColorDark || (LogColorDark = {}));
 var BrowserConsoleTarget = (function (_super) {
     __extends(BrowserConsoleTarget, _super);
-    function BrowserConsoleTarget() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function BrowserConsoleTarget(theme, level, filters) {
+        if (theme === void 0) { theme = "dark"; }
+        if (level === void 0) { level = 0; }
+        if (filters === void 0) { filters = []; }
+        var _this = _super.call(this, level, filters) || this;
+        if (theme === "light") {
+            BrowserConsoleTarget.THEME = LogColorLight;
+        }
+        if (theme === "dark") {
+            BrowserConsoleTarget.THEME = LogColorDark;
+        }
+        return _this;
     }
     BrowserConsoleTarget.prototype.output = function (logMessage) {
         if (!this.canOutput(logMessage)) {
@@ -37,46 +77,34 @@ var BrowserConsoleTarget = (function (_super) {
     };
     BrowserConsoleTarget.prototype.getColor = function (level) {
         switch (level) {
-            case __1.Log.TRACE:
-                return BrowserConsoleTarget.COLOR_TRACE;
-            case __1.Log.DEBUG:
-                return BrowserConsoleTarget.COLOR_DEBUG;
-            case __1.Log.LOG:
-                return BrowserConsoleTarget.COLOR_LOG;
-            case __1.Log.PRINT:
-                return BrowserConsoleTarget.COLOR_PRINT;
-            case __1.Log.INFO:
-                return BrowserConsoleTarget.COLOR_INFO;
-            case __1.Log.NOTICE:
-                return BrowserConsoleTarget.COLOR_NOTICE;
-            case __1.Log.WARN:
-                return BrowserConsoleTarget.COLOR_WARN;
-            case __1.Log.ERROR:
-                return BrowserConsoleTarget.COLOR_ERROR;
-            case __1.Log.CRITICAL:
-                return BrowserConsoleTarget.COLOR_CRITICAL;
-            case __1.Log.FATAL:
-                return BrowserConsoleTarget.COLOR_FATAL;
-            case __1.Log.COMMAND:
-                return BrowserConsoleTarget.COLOR_COMMAND;
-            case __1.Log.ASSERT:
-                return BrowserConsoleTarget.COLOR_ASSERT;
+            case 1:
+                return BrowserConsoleTarget.THEME.COLOR_TRACE;
+            case 2:
+                return BrowserConsoleTarget.THEME.COLOR_DEBUG;
+            case 3:
+                return BrowserConsoleTarget.THEME.COLOR_LOG;
+            case 5:
+                return BrowserConsoleTarget.THEME.COLOR_PRINT;
+            case 4:
+                return BrowserConsoleTarget.THEME.COLOR_INFO;
+            case 6:
+                return BrowserConsoleTarget.THEME.COLOR_NOTICE;
+            case 7:
+                return BrowserConsoleTarget.THEME.COLOR_WARN;
+            case 9:
+                return BrowserConsoleTarget.THEME.COLOR_ERROR;
+            case 8:
+                return BrowserConsoleTarget.THEME.COLOR_CRITICAL;
+            case 10:
+                return BrowserConsoleTarget.THEME.COLOR_FATAL;
+            case 100:
+                return BrowserConsoleTarget.THEME.COLOR_COMMAND;
+            case 11:
+                return BrowserConsoleTarget.THEME.COLOR_ASSERT;
             default:
-                return BrowserConsoleTarget.COLOR_LOG;
+                return BrowserConsoleTarget.THEME.COLOR_LOG;
         }
     };
-    BrowserConsoleTarget.COLOR_TRACE = "#CCCCCC";
-    BrowserConsoleTarget.COLOR_DEBUG = "#999999";
-    BrowserConsoleTarget.COLOR_LOG = "#666666";
-    BrowserConsoleTarget.COLOR_INFO = "#333333";
-    BrowserConsoleTarget.COLOR_PRINT = "#000000";
-    BrowserConsoleTarget.COLOR_NOTICE = "#0066FF";
-    BrowserConsoleTarget.COLOR_WARN = "#FF6600";
-    BrowserConsoleTarget.COLOR_CRITICAL = "#FF0000";
-    BrowserConsoleTarget.COLOR_ERROR = "#FF0000";
-    BrowserConsoleTarget.COLOR_FATAL = "#FF0000";
-    BrowserConsoleTarget.COLOR_ASSERT = "#FF6600";
-    BrowserConsoleTarget.COLOR_COMMAND = "#6666FF";
     return BrowserConsoleTarget;
 }(ConsoleTarget_1.ConsoleTarget));
 exports.BrowserConsoleTarget = BrowserConsoleTarget;

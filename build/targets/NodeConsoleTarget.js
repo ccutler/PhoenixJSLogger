@@ -37,29 +37,29 @@ var NodeConsoleTarget = (function (_super) {
     };
     NodeConsoleTarget.prototype.getColor = function (level) {
         switch (level) {
-            case __1.Log.TRACE:
+            case 1:
                 return NodeConsoleTarget.COLOR_TRACE;
-            case __1.Log.DEBUG:
+            case 2:
                 return NodeConsoleTarget.COLOR_DEBUG;
-            case __1.Log.LOG:
+            case 3:
                 return NodeConsoleTarget.COLOR_LOG;
-            case __1.Log.PRINT:
+            case 5:
                 return NodeConsoleTarget.COLOR_PRINT;
-            case __1.Log.INFO:
+            case 4:
                 return NodeConsoleTarget.COLOR_INFO;
-            case __1.Log.NOTICE:
+            case 6:
                 return NodeConsoleTarget.COLOR_NOTICE;
-            case __1.Log.WARN:
+            case 7:
                 return NodeConsoleTarget.COLOR_WARN;
-            case __1.Log.ERROR:
+            case 9:
                 return NodeConsoleTarget.COLOR_ERROR;
-            case __1.Log.CRITICAL:
+            case 8:
                 return NodeConsoleTarget.COLOR_CRITICAL;
-            case __1.Log.FATAL:
+            case 10:
                 return NodeConsoleTarget.COLOR_FATAL;
-            case __1.Log.ASSERT:
+            case 11:
                 return NodeConsoleTarget.COLOR_ASSERT;
-            case __1.Log.COMMAND:
+            case 100:
                 return NodeConsoleTarget.COLOR_COMMAND;
             default:
                 return NodeConsoleTarget.COLOR_LOG;

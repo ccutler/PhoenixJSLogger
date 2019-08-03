@@ -13,91 +13,91 @@ var Logger = (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.TRACE, this.category, args));
+        return _1.Log.log(new _1.LogMessage(1, this.category, args));
     };
     Logger.prototype.debug = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.DEBUG, this.category, args));
+        return _1.Log.log(new _1.LogMessage(2, this.category, args));
     };
     Logger.prototype.log = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.LOG, this.category, args));
+        return _1.Log.log(new _1.LogMessage(3, this.category, args));
     };
     Logger.prototype.print = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.PRINT, this.category, args));
+        return _1.Log.log(new _1.LogMessage(5, this.category, args));
     };
     Logger.prototype.info = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.INFO, this.category, args));
+        return _1.Log.log(new _1.LogMessage(4, this.category, args));
     };
     Logger.prototype.notice = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.NOTICE, this.category, args));
+        return _1.Log.log(new _1.LogMessage(6, this.category, args));
     };
     Logger.prototype.warn = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.WARN, this.category, args));
+        return _1.Log.log(new _1.LogMessage(7, this.category, args));
     };
     Logger.prototype.error = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.ERROR, this.category, args));
+        return _1.Log.log(new _1.LogMessage(9, this.category, args));
     };
     Logger.prototype.critical = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.CRITICAL, this.category, args));
+        return _1.Log.log(new _1.LogMessage(8, this.category, args));
     };
     Logger.prototype.fatal = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.FATAL, this.category, args));
+        return _1.Log.log(new _1.LogMessage(10, this.category, args));
     };
     Logger.prototype.mark = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.MARK, this.category, args));
+        return _1.Log.log(new _1.LogMessage(-1, this.category, args));
     };
     Logger.prototype.command = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return _1.Log.log(new _1.LogMessage(_1.Log.COMMAND, this.category, args));
+        return _1.Log.log(new _1.LogMessage(100, this.category, args));
     };
     Logger.prototype.assert = function (condition) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        var logMessage = new _1.LogMessage(_1.Log.ASSERT, this.category, args);
+        var logMessage = new _1.LogMessage(11, this.category, args);
         if (!condition) {
             return _1.Log.log(logMessage);
         }

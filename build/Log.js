@@ -65,31 +65,31 @@ var Log = (function () {
     Log.resolveLevelName = function (level) {
         switch (level) {
             default:
-            case Log.ALL:
+            case 0:
                 return "|   ALL| ";
-            case Log.TRACE:
+            case 1:
                 return "| TRACE| ";
-            case Log.DEBUG:
+            case 2:
                 return "| DEBUG| ";
-            case Log.LOG:
+            case 3:
                 return "|   LOG| ";
-            case Log.PRINT:
+            case 5:
                 return "| PRINT| ";
-            case Log.INFO:
+            case 4:
                 return "|  INFO| ";
-            case Log.NOTICE:
+            case 6:
                 return "|NOTICE| ";
-            case Log.WARN:
+            case 7:
                 return "|  WARN| ";
-            case Log.ERROR:
+            case 9:
                 return "| ERROR| ";
-            case Log.CRITICAL:
+            case 8:
                 return "|  CRIT| ";
-            case Log.FATAL:
+            case 10:
                 return "| FATAL| ";
-            case Log.COMMAND:
+            case 100:
                 return "|   CMD| ";
-            case Log.ASSERT:
+            case 11:
                 return "|ASSERT| ";
         }
     };
@@ -100,20 +100,6 @@ var Log = (function () {
         }
         Log.targets = null;
     };
-    Log.MARK = -1;
-    Log.ALL = 0;
-    Log.TRACE = 1;
-    Log.DEBUG = 2;
-    Log.LOG = 3;
-    Log.INFO = 4;
-    Log.PRINT = 5;
-    Log.NOTICE = 6;
-    Log.WARN = 7;
-    Log.CRITICAL = 8;
-    Log.ERROR = 9;
-    Log.FATAL = 10;
-    Log.ASSERT = 11;
-    Log.COMMAND = 100;
     Log.targets = [];
     return Log;
 }());

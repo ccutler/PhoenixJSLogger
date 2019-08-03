@@ -42,27 +42,27 @@ var ConsoleTarget = (function () {
     ConsoleTarget.prototype.write = function (level, output) {
         switch (level) {
             default:
-            case __1.Log.TRACE:
-            case __1.Log.DEBUG:
-            case __1.Log.LOG:
-            case __1.Log.PRINT:
+            case 1:
+            case 2:
+            case 3:
+            case 5:
                 console.log.apply(console, output);
                 break;
-            case __1.Log.INFO:
+            case 4:
                 console.info.apply(console, output);
                 break;
-            case __1.Log.WARN:
+            case 7:
                 console.warn.apply(console, output);
                 break;
-            case __1.Log.ERROR:
-            case __1.Log.CRITICAL:
-            case __1.Log.FATAL:
+            case 9:
+            case 8:
+            case 10:
                 console.error.apply(console, output);
                 break;
-            case __1.Log.ASSERT:
+            case 11:
                 console.warn.apply(console, output);
                 break;
-            case __1.Log.MARK:
+            case -1:
                 console.timeStamp.apply(console, output);
                 break;
         }

@@ -1,19 +1,5 @@
 import { ILogger, ILogTarget, LogMessage } from "./";
 export declare class Log {
-    static MARK: number;
-    static ALL: number;
-    static TRACE: number;
-    static DEBUG: number;
-    static LOG: number;
-    static INFO: number;
-    static PRINT: number;
-    static NOTICE: number;
-    static WARN: number;
-    static CRITICAL: number;
-    static ERROR: number;
-    static FATAL: number;
-    static ASSERT: number;
-    static COMMAND: number;
     static targets: ILogTarget[];
     static getLogger(category?: any): ILogger;
     static log(logMessage: LogMessage): LogMessage;
