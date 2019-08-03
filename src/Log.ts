@@ -1,20 +1,6 @@
-import { ILogger, ILogTarget, Logger, LogMessage } from "./";
+import { ILogger, ILogTarget, Logger, LogLevel, LogMessage } from "./";
 
 export class Log {
-    public static MARK: number = -1;
-    public static ALL: number = 0;
-    public static TRACE: number = 1;
-    public static DEBUG: number = 2;
-    public static LOG: number = 3;
-    public static INFO: number = 4;
-    public static PRINT: number = 5;
-    public static NOTICE: number = 6;
-    public static WARN: number = 7;
-    public static CRITICAL: number = 8;
-    public static ERROR: number = 9;
-    public static FATAL: number = 10;
-    public static ASSERT: number = 11;
-    public static COMMAND: number = 100;
 
     public static targets: ILogTarget[] = [];
 
@@ -90,31 +76,31 @@ export class Log {
     public static resolveLevelName(level: number): string {
         switch (level) {
             default:
-            case Log.ALL:
+            case LogLevel.ALL:
                 return "|   ALL| ";
-            case Log.TRACE:
+            case LogLevel.TRACE:
                 return "| TRACE| ";
-            case Log.DEBUG:
+            case LogLevel.DEBUG:
                 return "| DEBUG| ";
-            case Log.LOG:
+            case LogLevel.LOG:
                 return "|   LOG| ";
-            case Log.PRINT:
+            case LogLevel.PRINT:
                 return "| PRINT| ";
-            case Log.INFO:
+            case LogLevel.INFO:
                 return "|  INFO| ";
-            case Log.NOTICE:
+            case LogLevel.NOTICE:
                 return "|NOTICE| ";
-            case Log.WARN:
+            case LogLevel.WARN:
                 return "|  WARN| ";
-            case Log.ERROR:
+            case LogLevel.ERROR:
                 return "| ERROR| ";
-            case Log.CRITICAL:
+            case LogLevel.CRITICAL:
                 return "|  CRIT| ";
-            case Log.FATAL:
+            case LogLevel.FATAL:
                 return "| FATAL| ";
-            case Log.COMMAND:
+            case LogLevel.COMMAND:
                 return "|   CMD| ";
-            case Log.ASSERT:
+            case LogLevel.ASSERT:
                 return "|ASSERT| ";
         }
     }

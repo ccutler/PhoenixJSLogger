@@ -1,4 +1,4 @@
-import { ILogTarget, Log, LogMessage } from "../";
+import { ILogTarget, Log, LogLevel, LogMessage } from "../";
 import { ConsoleTarget } from "./ConsoleTarget";
 
 export class BrowserConsoleTarget extends ConsoleTarget implements ILogTarget {
@@ -34,40 +34,40 @@ export class BrowserConsoleTarget extends ConsoleTarget implements ILogTarget {
     /* istanbul ignore next */
     private getColor(level: number): string {
         switch (level) {
-            case Log.TRACE:
+            case LogLevel.TRACE:
                 return BrowserConsoleTarget.COLOR_TRACE;
 
-            case Log.DEBUG:
+            case LogLevel.DEBUG:
                 return BrowserConsoleTarget.COLOR_DEBUG;
 
-            case Log.LOG:
+            case LogLevel.LOG:
                 return BrowserConsoleTarget.COLOR_LOG;
 
-            case Log.PRINT:
+            case LogLevel.PRINT:
                 return BrowserConsoleTarget.COLOR_PRINT;
 
-            case Log.INFO:
+            case LogLevel.INFO:
                 return BrowserConsoleTarget.COLOR_INFO;
 
-            case Log.NOTICE:
+            case LogLevel.NOTICE:
                 return BrowserConsoleTarget.COLOR_NOTICE;
 
-            case Log.WARN:
+            case LogLevel.WARN:
                 return BrowserConsoleTarget.COLOR_WARN;
 
-            case Log.ERROR:
+            case LogLevel.ERROR:
                 return BrowserConsoleTarget.COLOR_ERROR;
 
-            case Log.CRITICAL:
+            case LogLevel.CRITICAL:
                 return BrowserConsoleTarget.COLOR_CRITICAL;
 
-            case Log.FATAL:
+            case LogLevel.FATAL:
                 return BrowserConsoleTarget.COLOR_FATAL;
 
-            case Log.COMMAND:
+            case LogLevel.COMMAND:
                 return BrowserConsoleTarget.COLOR_COMMAND;
 
-            case Log.ASSERT:
+            case LogLevel.ASSERT:
                 return BrowserConsoleTarget.COLOR_ASSERT;
 
             default:

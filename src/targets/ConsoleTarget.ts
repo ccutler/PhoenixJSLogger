@@ -1,4 +1,4 @@
-import { ILogTarget, Log, LogMessage } from "../";
+import { ILogTarget, Log, LogLevel, LogMessage } from "../";
 
 /* tslint:disable:no-console */
 export class ConsoleTarget implements ILogTarget {
@@ -54,32 +54,32 @@ export class ConsoleTarget implements ILogTarget {
     protected write(level: number, output: any): void {
         switch (level) {
             default:
-            case Log.TRACE:
-            case Log.DEBUG:
-            case Log.LOG:
-            case Log.PRINT:
+            case LogLevel.TRACE:
+            case LogLevel.DEBUG:
+            case LogLevel.LOG:
+            case LogLevel.PRINT:
                 console.log.apply(console, output);
                 break;
 
-            case Log.INFO:
+            case LogLevel.INFO:
                 console.info.apply(console, output);
                 break;
 
-            case Log.WARN:
+            case LogLevel.WARN:
                 console.warn.apply(console, output);
                 break;
 
-            case Log.ERROR:
-            case Log.CRITICAL:
-            case Log.FATAL:
+            case LogLevel.ERROR:
+            case LogLevel.CRITICAL:
+            case LogLevel.FATAL:
                 console.error.apply(console, output);
                 break;
 
-            case Log.ASSERT:
+            case LogLevel.ASSERT:
                 console.warn.apply(console, output);
                 break;
 
-            case Log.MARK:
+            case LogLevel.MARK:
                 console.timeStamp.apply(console, output);
                 break;
         }
