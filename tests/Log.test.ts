@@ -1,4 +1,4 @@
-import { ILogTarget, Logger, Log, LogMessage } from "../src/";
+import { ILogTarget, Logger, Log, LogLevel, LogMessage } from "../src/";
 import { ConsoleTarget, NodeConsoleTarget, BrowserConsoleTarget } from "../src/targets/";
 
 const NAME: string = "LogTest";
@@ -26,7 +26,7 @@ describe("Log Tests", () => {
     test("Log.log returns LogMessage", () => {
         const target: ILogTarget = new MockTarget();
         Log.addTarget(target);
-        expect(Log.log(new LogMessage(Log.ALL, NAME, MESSAGE))).toBeInstanceOf(LogMessage);
+        expect(Log.log(new LogMessage(LogLevel.ALL, NAME, MESSAGE))).toBeInstanceOf(LogMessage);
     });
 
     test("Log.clear clears logs", () => {
@@ -77,8 +77,8 @@ describe("Log Tests", () => {
     test("Log.setLevel sets correct LogLevel on LogTargets", () => {
         const target: ILogTarget = new MockTarget();
         Log.addTarget(target);
-        Log.setLevel(Log.PRINT);
-        expect(target.level).toBe(Log.PRINT);
+        Log.setLevel(LogLevel.PRINT);
+        expect(target.level).toBe(LogLevel.PRINT);
     });
 
     test("Log.setFilters sets correct filter on LogTargets", () => {
@@ -94,19 +94,19 @@ describe("Log Tests", () => {
 
     test("Log.resolveLevelName returns correct name", () => {
         expect(Log.resolveLevelName(-1234)).toBe("|   ALL| ");
-        expect(Log.resolveLevelName(Log.ALL)).toBe("|   ALL| ");
-        expect(Log.resolveLevelName(Log.TRACE)).toBe("| TRACE| ");
-        expect(Log.resolveLevelName(Log.DEBUG)).toBe("| DEBUG| ");
-        expect(Log.resolveLevelName(Log.LOG)).toBe("|   LOG| ");
-        expect(Log.resolveLevelName(Log.PRINT)).toBe("| PRINT| ");
-        expect(Log.resolveLevelName(Log.INFO)).toBe("|  INFO| ");
-        expect(Log.resolveLevelName(Log.NOTICE)).toBe("|NOTICE| ");
-        expect(Log.resolveLevelName(Log.WARN)).toBe("|  WARN| ");
-        expect(Log.resolveLevelName(Log.ERROR)).toBe("| ERROR| ");
-        expect(Log.resolveLevelName(Log.CRITICAL)).toBe("|  CRIT| ");
-        expect(Log.resolveLevelName(Log.FATAL)).toBe("| FATAL| ");
-        expect(Log.resolveLevelName(Log.COMMAND)).toBe("|   CMD| ");
-        expect(Log.resolveLevelName(Log.ASSERT)).toBe("|ASSERT| ");
+        expect(Log.resolveLevelName(LogLevel.ALL)).toBe("|   ALL| ");
+        expect(Log.resolveLevelName(LogLevel.TRACE)).toBe("| TRACE| ");
+        expect(Log.resolveLevelName(LogLevel.DEBUG)).toBe("| DEBUG| ");
+        expect(Log.resolveLevelName(LogLevel.LOG)).toBe("|   LOG| ");
+        expect(Log.resolveLevelName(LogLevel.PRINT)).toBe("| PRINT| ");
+        expect(Log.resolveLevelName(LogLevel.INFO)).toBe("|  INFO| ");
+        expect(Log.resolveLevelName(LogLevel.NOTICE)).toBe("|NOTICE| ");
+        expect(Log.resolveLevelName(LogLevel.WARN)).toBe("|  WARN| ");
+        expect(Log.resolveLevelName(LogLevel.ERROR)).toBe("| ERROR| ");
+        expect(Log.resolveLevelName(LogLevel.CRITICAL)).toBe("|  CRIT| ");
+        expect(Log.resolveLevelName(LogLevel.FATAL)).toBe("| FATAL| ");
+        expect(Log.resolveLevelName(LogLevel.COMMAND)).toBe("|   CMD| ");
+        expect(Log.resolveLevelName(LogLevel.ASSERT)).toBe("|ASSERT| ");
     });
 
     test("Log.destroy removes all targets", () => {

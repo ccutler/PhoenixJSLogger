@@ -1,13 +1,13 @@
-import { Log, LogMessage } from "../src/";
+import { LogLevel, LogMessage } from "../src/";
 
 const NAME: string = "LogMessageTest";
 const MESSAGE: string = "LogMessageMessage";
 
 describe("LogMessage Tests", () => {
-    const logMessage: LogMessage = new LogMessage(Log.ALL, NAME, MESSAGE);
+    const logMessage: LogMessage = new LogMessage(LogLevel.ALL, NAME, MESSAGE);
 
     test("LogMessage.level equals 'Log.ALL'", () => {
-        expect(logMessage.level).toBe(Log.ALL);
+        expect(logMessage.level).toBe(LogLevel.ALL);
     });
 
     test(`LogMessage.category equals '${NAME}'`, () => {
