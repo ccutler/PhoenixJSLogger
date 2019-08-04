@@ -1,6 +1,6 @@
 {
   "name": "@phoenixjs/logger",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Lightweight, extensible javascript logger that has risen from the ashes",
   "sideEffects": false,
   "main": "build/index.js",
