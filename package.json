@@ -21,8 +21,8 @@
   "homepage": "https://github.com/ccutler/PhoenixJSLogger#readme",
   "files": [
     "/build",
-    "LICENSE",
-    "README.md"
+    "/LICENSE",
+    "/README.md"
   ],
   "devDependencies": {
     "@types/jest": "^24.0.16",
