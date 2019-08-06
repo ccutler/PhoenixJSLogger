@@ -3,8 +3,8 @@
   "version": "1.1.5",
   "description": "Lightweight, extensible javascript logger that has risen from the ashes",
   "sideEffects": false,
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "docs": "typedoc ./src --options typedoc.json"
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/ccutler/PhoenixJSLogger#readme",
   "files": [
-    "/build",
+    "/dist",
     "/LICENSE",
     "/README.md"
   ],
