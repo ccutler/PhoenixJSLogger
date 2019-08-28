@@ -15,7 +15,7 @@ Useable in both Node & the Browser (using webpack), with the ability to add addi
 import { ILogger, Log, ConsoleTarget } from "@phoenixjs/logger";
 Log.addTarget(new ConsoleTarget());
 
-const log: Ilogger = Log.getLogger(this);
+const log: ILogger = Log.getLogger(this);
 log.debug("Debug Statement");
 log.info("Info Statement");
 log.error("Error Statement");
