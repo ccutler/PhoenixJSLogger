@@ -1,4 +1,6 @@
-import { ILogTarget, Log, LogLevel, LogMessage } from "../";
+import { ILogTarget } from "../ILogTarget";
+import { LogLevel } from "../LogLevel";
+import { LogMessage } from "../LogMessage";
 import { ConsoleTarget } from "./ConsoleTarget";
 
 enum LogColorLight {
@@ -34,7 +36,7 @@ enum LogColorDark {
 export class BrowserConsoleTarget extends ConsoleTarget implements ILogTarget {
 
     private static THEME: any;
-    public constructor(theme: "light" | "dark" = "dark", level: number = 0, filters: string[] = []) {
+    public constructor(theme: "light" | "dark" = "dark", level: LogLevel = 0, filters: string[] = []) {
         super(level, filters);
 
         if (theme === "light") {
@@ -50,7 +52,7 @@ export class BrowserConsoleTarget extends ConsoleTarget implements ILogTarget {
         if (!this.canOutput(logMessage)) { return; }
 
         let output: any[];
-        let message: string = `%c(${this.getTimeStamp()})${Log.resolveLevelName(logMessage.level) + Log.formatCategory(logMessage.category)}: `;
+        let message: string = `%c(${this.getTimeStamp()})${this.resolveLevelName(logMessage.level) + this.formatCategory(logMessage.category)}: `;
 
         if (typeof logMessage.message[0] === "string" || typeof logMessage.message[0] === "number" || typeof logMessage.message[0] === "boolean") {
             message += logMessage.message;
@@ -63,7 +65,7 @@ export class BrowserConsoleTarget extends ConsoleTarget implements ILogTarget {
     }
 
     /* istanbul ignore next */
-    private getColor(level: number): string {
+    private getColor(level: LogLevel): string {
         switch (level) {
             case LogLevel.TRACE:
                 return BrowserConsoleTarget.THEME.COLOR_TRACE;

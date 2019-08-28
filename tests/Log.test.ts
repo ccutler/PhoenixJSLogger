@@ -88,27 +88,6 @@ describe("Log Tests", () => {
         expect(target.filters).toContain(NAME);
     });
 
-    test("Log.formatCategory returns formatted category", () => {
-        expect(Log.formatCategory(NAME)).toBe(`[${NAME}]`);
-    });
-
-    test("Log.resolveLevelName returns correct name", () => {
-        expect(Log.resolveLevelName(-1234)).toBe("|   ALL| ");
-        expect(Log.resolveLevelName(LogLevel.ALL)).toBe("|   ALL| ");
-        expect(Log.resolveLevelName(LogLevel.TRACE)).toBe("| TRACE| ");
-        expect(Log.resolveLevelName(LogLevel.DEBUG)).toBe("| DEBUG| ");
-        expect(Log.resolveLevelName(LogLevel.LOG)).toBe("|   LOG| ");
-        expect(Log.resolveLevelName(LogLevel.PRINT)).toBe("| PRINT| ");
-        expect(Log.resolveLevelName(LogLevel.INFO)).toBe("|  INFO| ");
-        expect(Log.resolveLevelName(LogLevel.NOTICE)).toBe("|NOTICE| ");
-        expect(Log.resolveLevelName(LogLevel.WARN)).toBe("|  WARN| ");
-        expect(Log.resolveLevelName(LogLevel.ERROR)).toBe("| ERROR| ");
-        expect(Log.resolveLevelName(LogLevel.CRITICAL)).toBe("|  CRIT| ");
-        expect(Log.resolveLevelName(LogLevel.FATAL)).toBe("| FATAL| ");
-        expect(Log.resolveLevelName(LogLevel.COMMAND)).toBe("|   CMD| ");
-        expect(Log.resolveLevelName(LogLevel.ASSERT)).toBe("|ASSERT| ");
-    });
-
     test("Log.destroy removes all targets", () => {
         const target: ILogTarget = new MockTarget();
         Log.addTarget(target);
@@ -119,12 +98,12 @@ describe("Log Tests", () => {
 
 export class MockTarget implements ILogTarget {
     public filters: string[];
-    public level: number;
+    public level: LogLevel;
 
     public startTime: number;
     public timeStampOffset: number = 0;
 
-    constructor(level: number = 0, filters: string[] = []) {
+    constructor(level: LogLevel = 0, filters: string[] = []) {
         this.startTime = new Date().getTime();
 
         this.level = level;

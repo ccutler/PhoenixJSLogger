@@ -1,4 +1,3 @@
-
 import { LogMessage } from "./";
 
 export interface ILogger {

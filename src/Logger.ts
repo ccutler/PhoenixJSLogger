@@ -1,4 +1,7 @@
-import { ILogger, Log, LogLevel, LogMessage } from "./";
+import { ILogger } from "./ILogger";
+import { Log } from "./Log";
+import { LogLevel } from "./LogLevel";
+import { LogMessage } from "./LogMessage";
 
 export class Logger implements ILogger {
     public readonly category: string;

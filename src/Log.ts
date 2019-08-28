@@ -1,4 +1,8 @@
-import { ILogger, ILogTarget, Logger, LogLevel, LogMessage } from "./";
+import { ILogger } from "./ILogger";
+import { ILogTarget } from "./ILogTarget";
+import { Logger } from "./Logger";
+import { LogLevel } from "./LogLevel";
+import { LogMessage } from "./LogMessage";
 
 export class Log {
 
@@ -57,7 +61,7 @@ export class Log {
         return target;
     }
 
-    public static setLevel(level: number): void {
+    public static setLevel(level: LogLevel): void {
         for (let i = 0; i < Log.targets.length; i++) {
             Log.targets[i].level = level;
         }
@@ -66,42 +70,6 @@ export class Log {
     public static setFilters(filters: string[]): void {
         for (let i = 0; i < Log.targets.length; i++) {
             Log.targets[i].filters = filters;
-        }
-    }
-
-    public static formatCategory(category: string): string {
-        return `[${category}]`;
-    }
-
-    public static resolveLevelName(level: number): string {
-        switch (level) {
-            default:
-            case LogLevel.ALL:
-                return "|   ALL| ";
-            case LogLevel.TRACE:
-                return "| TRACE| ";
-            case LogLevel.DEBUG:
-                return "| DEBUG| ";
-            case LogLevel.LOG:
-                return "|   LOG| ";
-            case LogLevel.PRINT:
-                return "| PRINT| ";
-            case LogLevel.INFO:
-                return "|  INFO| ";
-            case LogLevel.NOTICE:
-                return "|NOTICE| ";
-            case LogLevel.WARN:
-                return "|  WARN| ";
-            case LogLevel.ERROR:
-                return "| ERROR| ";
-            case LogLevel.CRITICAL:
-                return "|  CRIT| ";
-            case LogLevel.FATAL:
-                return "| FATAL| ";
-            case LogLevel.COMMAND:
-                return "|   CMD| ";
-            case LogLevel.ASSERT:
-                return "|ASSERT| ";
         }
     }
 

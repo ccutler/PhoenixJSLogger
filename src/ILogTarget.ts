@@ -1,8 +1,9 @@
-import { LogMessage } from "./";
+import { LogMessage } from "./LogMessage";
+import { LogLevel } from "./LogLevel";
 
 export interface ILogTarget {
     filters: string[];
-    level: number;
+    level: LogLevel;
 
     output(logMessage: LogMessage): void;
     clear(): void;
